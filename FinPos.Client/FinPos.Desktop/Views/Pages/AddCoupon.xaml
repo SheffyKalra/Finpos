@@ -1,0 +1,62 @@
+﻿<Page xmlns:UserControls="clr-namespace:FinPos.Client.Views.Pages.UserControls"  x:Class="FinPos.Client.Views.UserControls.AddCoupon"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.UserControls"
+      mc:Ignorable="d" Name="AddCouponPage" SizeChanged="Grid_SizeChanged">
+
+    <Page.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid >
+        <UserControls:ManageOffer x:Name="UCManageOffer" Visibility="Collapsed"/>
+        <local:ManageCoupon Visibility="Collapsed" x:Name="UCManageCoupon"/>
+        <StackPanel VerticalAlignment="Bottom" Margin="0,0,15,0" Height="66" Background="#dcdcdc">
+            <Button Style="{StaticResource MyButtonStyle}"  Name="btn_Save" Click="btn_Save_Click"  Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,14,15,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="90" Height="40" HorizontalAlignment="Right" >
+                <StackPanel>
+                    <Image Source="{StaticResource ResourceKey=save_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"/>
+                    <TextBlock  Margin="18,-18,0,0" FontSize="14" LineHeight="auto" Height="19" ><Run Text="Save"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MyButtonStyle}"  Name="btn_back" Click="btn_back_Click"  Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,-55,109,14"  Background="#0091EA" FontSize="18" Foreground="#fff" Width="90" Height="40" HorizontalAlignment="Right" >
+                <StackPanel >
+                    <Image Source="{StaticResource ResourceKey=back_icon}"  Height="14"  HorizontalAlignment="left"   Width="14">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.485"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock  Margin="18,-18,0,0" FontSize="14" LineHeight="auto" Height="19" ><Run Text="Back"/></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+
+</Page>

@@ -1,0 +1,404 @@
+﻿<Page x:Class="FinPos.Client.Views.UserControls.invoice"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.UserControls"
+      mc:Ignorable="d">
+
+    <Grid Margin="0,0,0,0" Language="En" Width="780">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="780" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="60" />
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="auto"/>
+
+            <!-- form grid -->
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600" />
+                <ColumnDefinition Width="180" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="60" />
+                <RowDefinition Height="40"/>
+                <!-- form grid -->
+            </Grid.RowDefinitions>
+
+            <Grid   Margin="0"  >
+                <Label  Foreground="#303030" Margin="0,8,0,0" FontSize="22" >Retail Invoice</Label>
+            </Grid>
+            <Grid   Margin="0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" >
+                <Image Source="{StaticResource ResourceKey=barcode_logo_icon}" Margin="10"/>
+            </Grid>
+        </Grid>
+
+        <!-- Address -->
+        <Border BorderBrush="#ccc" BorderThickness="0 1" Grid.Row="1" Grid.Column="0"   >
+            <Grid  Background="#fff"    Margin="0"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition   Width="220" />
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="200"/>
+
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="22" />
+                    <RowDefinition Height="22" />
+                    <RowDefinition Height="22" />
+                    <RowDefinition Height="22" />
+
+                </Grid.RowDefinitions>
+
+                <TextBlock  FontWeight="bold"   FontSize="13"  Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"  Margin="15,0,0,0">Bill To</TextBlock>
+                <TextBlock  FontWeight="bold"  FontSize="13"  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"  Margin="15,0,0,0">Ship To</TextBlock>
+                <TextBlock   Name="txtFromAddress"  FontSize="13"  Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"  Margin="15,0,0,0">Address</TextBlock>
+                <TextBlock Name="txtToAddress"  FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  Margin="15,0,0,0">Address</TextBlock>
+                <TextBlock    Name="txtFromCity"  FontSize="13"  Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"  Margin="15,0,0,0">State</TextBlock>
+                <TextBlock  Name="txtToCity" FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"  Margin="15,0,0,0">State</TextBlock>
+                <TextBlock  Name="txtFromPhone"  FontSize="13"  Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"  Margin="15,0,0,0">Phone No.</TextBlock>
+                <TextBlock Name="txtToPhone"  FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  Margin="15,0,0,0">Phone No.</TextBlock>
+                <TextBlock  FontWeight="bold"  FontSize="13"  Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"  Margin="5,0,0,0">Invoice</TextBlock>
+                <TextBlock   FontSize="13"  Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"  Margin="5,0,0,0">00024</TextBlock>
+                <TextBlock  FontWeight="bold"  FontSize="13"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"  Margin="5,0,0,0">Invoice Date</TextBlock>
+                <TextBlock   FontSize="13"  Grid.Column="3" Grid.Row="1" VerticalAlignment="Center"  Margin="5,0,0,0">08/09/2017</TextBlock>
+                <TextBlock  FontWeight="bold"  FontSize="13"  Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"  Margin="5,0,0,0">P.O</TextBlock>
+                <TextBlock   FontSize="13"  Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"  Margin="5,0,0,0">08/09/2017</TextBlock>
+                <TextBlock  FontWeight="bold"  FontSize="13"  Grid.Column="2" Grid.Row="3" VerticalAlignment="Center"  Margin="5,0,0,0">Due Date</TextBlock>
+                <TextBlock   FontSize="13"  Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"  Margin="5,0,0,0">08/09/2017</TextBlock>
+            </Grid>
+        </Border>
+
+
+        <!-- address grid close -->
+
+
+
+        <Grid  Grid.Row="2" Visibility="Collapsed" Name="grdPrintPurchase"   Background="#fff" Margin="0,0,0,0" Width="780">
+            <ListView Grid.Row="0" Name="lstPrintPurchase" Grid.Column="0"    Background="#eaeaea" BorderThickness="0" SelectionMode="Single"   BorderBrush="Transparent"  Margin="0" Width="auto" VerticalAlignment="Top" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="350">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Code" Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="350" >Products</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PrintProductName}" Width="350" Margin="-6 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding ProductName}" IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0" ></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="130">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Code"  Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="130">Quantity</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PrintQuantity}"  Width="130" Margin="-6 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding Quantity}"  IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0"></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Code"  Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="150">Amount</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PrintCostPrice}"  Width="150" Margin="-10 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding PrintCostPrice}"  IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0"></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="150">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  Tag="Code"  Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="150">Total Amount</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock  Text="{Binding PrintTotal}" Width="150" Margin="-10 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding PrintTotal}" IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0"  ></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" >
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
+
+        <!-- return listing -->
+        <Grid  Grid.Row="2" Visibility="Collapsed"  Background="#fff" Margin="0,0,0,0" Width="780" Name="grdReturnProducts">
+            <ListView Grid.Row="0" Name="lstPrintReturnPurchase" Grid.Column="0" Visibility="Visible"   Background="#eaeaea" BorderThickness="0" SelectionMode="Single"   BorderBrush="Transparent"  Margin="0" Width="auto" VerticalAlignment="Top" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Code" Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="200" >Product</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PrintProductName}" Width="200" Margin="-6 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding ProductName}" IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0" ></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Width="235">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Code"  Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="235">Reason</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Reason}"  Width="235" Margin="-6 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding Quantity}"  IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0"></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="125">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Code"  Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="125">Return Quantity</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ReturnQty}"  Width="125" Margin="-6 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding Quantity}"  IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0"></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                        <GridViewColumn Width="100">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Tag="Code"  Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="100">Amount</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PrintCostPrice}"  Width="100" Margin="-10 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding PrintCostPrice}"  IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0"></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="120">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  Tag="Code"  Background="#1f579c" FontSize="15"  Foreground="#fff"    Padding="10 5" HorizontalContentAlignment="Left" Width="120">Total Amount</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock  Text="{Binding PrintTotal}" Width="120" Margin="-10 0 -10 0" Height="40"  FontSize="15" Padding="10 5">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#C4ADC8" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                         <!--<TextBox Text="{Binding PrintTotal}" IsReadOnly="True" Background="#fff" Width="170"  Height="26" Margin="0 0 5 0"  BorderThickness="1" BorderBrush="#e7e7e7"  VerticalContentAlignment="Center" Foreground="#333"  FontSize="15" Padding="5 0"  ></TextBox>-->
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" >
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
+
+
+        <Grid Grid.Row="3" Grid.Column="0"  Background="#fff" HorizontalAlignment="right"    Margin="0 0 0 0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition   Width="110" />
+                <ColumnDefinition Width="100"  />
+                <ColumnDefinition Width="8"/>
+
+
+            </Grid.ColumnDefinitions>
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22" />
+                <RowDefinition Height="22" />
+                <RowDefinition Height="22" />
+                <RowDefinition Height="22" />
+                <RowDefinition Height="22" />
+
+            </Grid.RowDefinitions>
+
+            <TextBlock  FontWeight="bold"   FontSize="13"  Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"  Margin="10,0,0,0">Sub-total</TextBlock>
+            <TextBlock Name="txtPrintSubtotal" TextAlignment="Right"  FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"  Margin="10,0,0,0">000</TextBlock>
+            <TextBlock  FontWeight="bold"   FontSize="13"  Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"  Margin="10,0,0,0">Tax</TextBlock>
+            <TextBlock  Name="txtPrintTax" TextAlignment="Right" FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  Margin="10,0,0,0">00</TextBlock>
+            <TextBlock  FontWeight="bold"   FontSize="13"  Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"  Margin="10,0,0,0">Discount</TextBlock>
+
+            <TextBlock Name="txtPrintDiscount"  TextAlignment="Right" FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"  Margin="10,0,0,0">00000000</TextBlock>
+            <TextBlock  FontWeight="bold"   FontSize="13"  Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"  Margin="10,0,0,0">Total Due</TextBlock>
+            <TextBlock  Name="txtPrintNetAmount" TextAlignment="Right" FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"  Margin="10,0,0,0">000</TextBlock>
+            <TextBlock  FontWeight="bold"   FontSize="13"  Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"  Margin="10,0,0,0">Sub Charge</TextBlock>
+            <TextBlock Name="txtPrintSubCharge"  TextAlignment="Right" FontSize="13" FontWeight="Normal" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  Margin="10,0,0,0">000</TextBlock>
+        </Grid>
+    </Grid>
+
+
+</Page>

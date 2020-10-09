@@ -1,0 +1,294 @@
+﻿<Page x:Class="FinPos.Client.Views.UserControls.EditProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.UserControls"
+       xmlns:my="clr-namespace:FinPos.Client.Controls"
+      mc:Ignorable="d" 
+      >
+
+    <Page.Resources>
+        <Style x:Key="shadowedLabelStyle">
+            <Setter Property="TextBlock.Foreground" Value="{x:Static SystemColors.ControlDarkBrush}" />
+            <Setter Property="FrameworkElement.Opacity" Value="0.8" />
+            <Setter Property="TextBlock.FontSize" Value="12" />
+            <Setter Property="TextBlock.Margin" Value="8,8,4,4" />
+        </Style>
+
+        <Style TargetType="{x:Type my:ShadowedTextBox}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="LabelStyle" Value="{StaticResource shadowedLabelStyle}" />
+        </Style>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="0,0,0,0" MouseUp="Grid_MouseUp" Language="En"   DataContext="{Binding Source={StaticResource ResourceKey=productRequirements}}">
+        <Grid.CommandBindings>
+            <CommandBinding Command="New" CanExecute="AddProduct_CanExecute"/>
+        </Grid.CommandBindings>
+        <Grid.Resources>
+            <Style x:Key="inlineText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="20,5,10,0"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="16"/> 
+                <Setter Property="VerticalAlignment" Value="center"/>
+            </Style>
+
+
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="10,5,20,0"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="800"/>
+                <Setter Property="Padding" Value="10,5,10,0"/>
+                <Setter Property="BorderBrush" Value="#e2e2e2"/>
+                <Setter Property="BorderThickness" Value="2"/>
+
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="105*"/>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid  Margin="0" Grid.RowSpan="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="BranchGrid" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "21.124" />
+                <RowDefinition Height="38.876"/>
+                <RowDefinition Height = "auto" />
+            </Grid.RowDefinitions>
+
+            <Grid   Margin="12,10,0,0" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16*"/> 
+                </Grid.ColumnDefinitions>
+                <Label FontSize="20" Name="lblEditProduct" Foreground="#303030" Margin="0,0,0,0"></Label>
+                <!-- search bar-->
+                <!--<DockPanel Grid.Column="1" DockPanel.Dock="right" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 30 0">
+                            <TextBox   Width="300" Padding="5 3" FontSize="14" Height="33">Search</TextBox>
+                            <Button BorderThickness="0" Background="#0091EA" Cursor="Hand" Foreground="#fff" FontSize="18" Width="100" Height="33">Search</Button>
+                        </DockPanel>-->
+
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0" VerticalAlignment="Top" Name="ContentPanel" HorizontalAlignment="Left" Height="460" >
+                <DockPanel Margin="17,0,0,0" HorizontalAlignment="Left" Name="innerContentDock" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+               
+                        <!--<Grid Name="Contentleftpanel" DockPanel.Dock="left" Background="#fff" Width="283" VerticalAlignment="Top" Height="422" Margin="0 0" >
+                            -->
+                        <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\add-company.png" Width="272" Margin="14,20,14,107"></Image>-->
+                        <!--
+                            <Image Source="{StaticResource ResourceKey=add_company_icon}"  Name="CompanyDemoLogo"  Margin="77,7,129,299"></Image>
+                            <Image Source="{StaticResource ResourceKey=add_company_icon}" Visibility="Hidden" Name="CompanyLogo"  Width="272" Margin="14,20,14,107"></Image>
+
+                            <Button Style="{StaticResource MyButtonStyle}" Name="btn_removelogo" Background="#eb5151" BorderThickness="0"  Click="btn_removelogo_Click" Width="102" Margin="0,0,81,82" Foreground="#fff"  Height="32" FontSize="16" Content="{StaticResource  ResourceKey=remove_logo}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Cursor="Hand" />
+                            <Button Style="{StaticResource MyButtonStyle}" Name="btn_uploadlogo" Background="#1f579c" BorderThickness="0"  Click="btn_uploadlogo_Click" Width="102" Margin="0,0,191,82"  Foreground="#fff"  Height="32" FontSize="16" Content="{StaticResource  ResourceKey=upload_logo}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Cursor="Hand" />
+                        </Grid>-->
+                         
+                        <Grid   DockPanel.Dock="right" Background="#fff"  Name="innerContentPanel" Height="600" Width="1153"  VerticalAlignment="Top" Margin="0,0,0,0"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Name="LeftColumn" Width="150" />
+                            <ColumnDefinition Name="RightColumn" Width="350"  />
+                            <ColumnDefinition  Name="LeftColumn1" Width="250" />
+                            <ColumnDefinition Name="RightColumn2" Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Content Here-->
+                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource inlineText}"  Name="productName" Text="{StaticResource  ResourceKey=grid_product_name}" Margin="20,0,6,5"/>
+                            <TextBox Style="{StaticResource ResourceKey=validation}" Validation.Error="txtEmail_Error" FontSize="15" Padding="10 3"
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=ItemName,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  Grid.Column="1" Grid.Row="1" Name="product_name" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource inlineText}"  Name="category" Text="{StaticResource  ResourceKey=category_code}" Margin="20,0,6,5"></TextBlock>
+                            <!--<TextBox KeyUp="TextBox_KeyUp" LostFocus="category_code_LostFocus"  FontSize="15" Padding="10 3"
+                          Grid.Row="2" Name="category_code" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1"/>-->
+                        <DockPanel
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="0,0,0,0">
+                            <my:ShadowedTextBox Label="Enter Category"   KeyUp="TextBox_KeyUp" LostFocus="category_code_LostFocus"  FontSize="15" Padding="10 0"
+                                 Grid.Row="2" Grid.Column="1" x:Name="category_code" MaxLength="50" Height="35" Margin="0,0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" />
+
+                        </DockPanel>
+                        <Button
+                                 Grid.Row="2" Grid.Column="1"
+                                Name="arrow"
+                                Width="11"
+                                Height="11"
+                                Margin="0 0 8 0"
+                                Padding="0"
+                                HorizontalAlignment="Right"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Click="arrow_Click"
+                                DockPanel.Dock="Right" Canvas.ZIndex="3">
+                            <Image Source="{StaticResource ResourceKey=down_arrow}"  />
+                        </Button>
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource inlineText}"  Name="retailprice" Text="{StaticResource  ResourceKey=retail_price}" Margin="20,0,6,5"></TextBlock>
+                            <TextBox Style="{StaticResource ResourceKey=validation}" Validation.Error="txtEmail_Error" FontSize="15" Padding="10 3"
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=RetailPrice,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}" PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="txt_cmpPhone_PreviewTextInput"  Grid.Row="3"   Name="retail_price" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource inlineText}"  Name="tradePrice" Text="{StaticResource  ResourceKey=trade_price}" Margin="20,0,6,5"></TextBlock>
+                            <TextBox  Style="{StaticResource ResourceKey=validation}" Validation.Error="txtEmail_Error" FontSize="15" Padding="10 3"
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=TradePrice,Source={StaticResource ResourceKey=productRequirements},
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}" PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="txt_cmpPhone_PreviewTextInput" Grid.Row="4" Name="trade_price" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource inlineText}"  Name="wholeSellerPrice" Text="{StaticResource  ResourceKey=wholeseller_price}" Margin="20,0,6,5"></TextBlock>
+                            <TextBox   FontSize="15" Padding="10 3"
+           Grid.Row="5" Name="wholeseller_price" PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="txt_cmpPhone_PreviewTextInput" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource inlineText}"  Name="resellerPrice" Text="{StaticResource  ResourceKey=reseller_price}" Margin="20,0,6,5"/>
+                        <TextBox PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="txt_cmpPhone_PreviewTextInput"  FontSize="15" Padding="10 3" Grid.Row="6"  Name="reseller_price" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1"/>
+
+                            <!--<TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource inlineText}"  Name="addressLabel6" Text="{StaticResource  ResourceKey=print_item_code}" Grid.ColumnSpan="2" Margin="20,17,10,15" Height="22"></TextBlock>
+                        <TextBox  FontSize="15" Padding="10 3" Grid.Row="6" Name="bar_code_height6" MaxLength="50" Height="Auto" Margin="10,15,12,11" Width="Auto" Grid.Column="1"/>-->
+
+
+                            <!--Colummnn2-->
+
+                        <TextBlock Grid.Column="2" Grid.Row="1" Style="{StaticResource inlineText}"  Name="itemType" Text="{StaticResource  ResourceKey=grid_product_type}" Margin="100,0,0,5"></TextBlock>
+                            <!--<TextBox  FontSize="15" Padding="10 3" Grid.Row="1" Name="sort_name" MaxLength="50" Height="Auto" Margin="10,15,12,11" Width="Auto" Grid.Column="3"/>-->
+                            <ComboBox Style="{StaticResource ResourceKey=validation1}" Validation.Error="txtEmail_Error" FontSize="15" Padding="10 3"
+                         SelectedValue="{Binding UpdateSourceTrigger=PropertyChanged, Path=ItemType,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}" IsReadOnly="True" IsEditable="True"  Grid.Column="3" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Row="1" Name="item_Type"></ComboBox>
+
+
+                        <TextBlock Grid.Column="2" Grid.Row="2" Style="{StaticResource inlineText}"  Name="weight" Text="{StaticResource  ResourceKey=weight}" Margin="100,0,0,5"></TextBlock>
+                            <TextBox PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="txt_cmpPhone_PreviewTextInput" FontSize="15" Padding="10 3"
+                          Grid.Row="2" Name="weight_" MaxLength="50" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+
+                        <TextBlock Grid.Column="2" Grid.Row="3" Style="{StaticResource inlineText}"  Name="description" Text="{StaticResource  ResourceKey=description}" Margin="100,0,0,5"></TextBlock>
+                        <TextBox AcceptsReturn="True"  FontSize="15" Padding="10 3" Grid.Row="3" Name="description_" MaxLength="50" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+
+
+
+                        <TextBlock Grid.Column="2" Grid.Row="7" Style="{StaticResource inlineText}"  Name="taxPercentage" Text="{StaticResource  ResourceKey=taxPercentage}" Margin="100,0,0,5"></TextBlock>
+                            <TextBox Style="{StaticResource ResourceKey=validation}" Validation.Error="txtEmail_Error" FontSize="15" Padding="10 3"
+                            Grid.Row="7" PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="txt_cmpPhone_PreviewTextInput" Name="taxPercentage_" MaxLength="50" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+
+                        <TextBlock Grid.Column="2" Grid.Row="5" Style="{StaticResource inlineText}"  Name="mimnimumLevel" Text="{StaticResource  ResourceKey=minimumlevel}" Margin="100,0,0,5"></TextBlock>
+                        <TextBox PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="reorder_level_PreviewTextInput" FontSize="15" Padding="10 3" Grid.Row="5" Name="minimum_level" MaxLength="50" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+                        <TextBlock Grid.Column="2" Grid.Row="4" Style="{StaticResource inlineText}"  Name="reorderLevel" Text="{StaticResource  ResourceKey=reorderlevel}" Margin="100,0,0,5"></TextBlock>
+                        <TextBox  FontSize="15" PreviewKeyDown="txt_cmpPhone_PreviewKeyDown" PreviewTextInput="reorder_level_PreviewTextInput" Padding="10 3" Grid.Row="4" Name="reorder_level" MaxLength="50" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+                        <TextBlock Grid.Column="2" Grid.Row="8" Style="{StaticResource inlineText}"  Name="itemImage" Text="{StaticResource  ResourceKey=Grid_Product_Picture}" Margin="100,0,0,5"></TextBlock>
+                        <Image Grid.Row="8" Source="{StaticResource ResourceKey=add_company_icon}"  Name="CompanyDemoLogo"  Margin="240,10,282,-7" Width="80" Grid.Column="2" RenderTransformOrigin="0.929,0.5" Grid.RowSpan="3" Grid.ColumnSpan="2"></Image>
+                            <Image Grid.Row="8" Source="{StaticResource ResourceKey=add_company_icon}" Visibility="Hidden" Name="CompanyLogo"   Margin="76,0,127,-5" Width="80" Grid.Column="2" Grid.ColumnSpan="2"/>
+                        <Button IsEnabled="False" Grid.Row="8" Style="{StaticResource MyButtonStyle}" Name="btn_uploadlogo" Background="#0091EA" BorderThickness="0"  Click="btn_uploadlogo_Click" Width="110" Grid.Column="3" Margin="0,0,114,-1"  Foreground="#fff"  Height="40" FontSize="16" Content="{StaticResource  ResourceKey=upload_logo}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Cursor="Hand" />
+                        <Button IsEnabled="False" Grid.Row="8" Style="{StaticResource MyButtonStyle}" Name="btn_removelogo" Background="#eb5151" BorderThickness="0"  Click="btn_removelogo_Click" Width="110" Grid.Column="3" Margin="0,0,0,-1" Foreground="#fff"  Height="40" FontSize="16" Content="{StaticResource  ResourceKey=remove_logo}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Cursor="Hand" />
+                            <!--<TextBox  FontSize="15" Padding="10 3" Grid.Row="7" Name="item_image" MaxLength="50" Height="Auto" Margin="10,15,12,11" Width="Auto" Grid.Column="3"/>-->
+                        <TextBlock Grid.Column="2" Grid.Row="6" Style="{StaticResource inlineText}"  Name="shortName" Text="{StaticResource  ResourceKey=short_name}"   Margin="100,0,0,5"></TextBlock>
+                        <TextBox  FontSize="15" Padding="10 3" Grid.Row="6" Name="shortname_" MaxLength="50" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+
+
+
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="8" Style="{StaticResource inlineText}"  Name="barcode" Text="{StaticResource  ResourceKey=barcode}" Margin="20,0,6,5"></TextBlock>
+                            <TextBox Style="{StaticResource ResourceKey=validation}" Validation.Error="txtEmail_Error" FontSize="15" Padding="10 3"
+                        Text="{Binding Barcode}" LostFocus="barcodeLogo_lostFocus"  Grid.Row="8" Name="barcode_" MaxLength="50" Height="35" Margin="0" Width="200" VerticalContentAlignment="Center" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1"/>
+                        <Image Grid.Row="8" Source="{StaticResource ResourceKey=barcode_icon}"   Name="barcodeLogo"   Margin="261,6,10,-6" Width="80" Grid.Column="1"  />
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource inlineText}"  Name="isTaxInclusive" Text="{StaticResource  ResourceKey=is_texinclusive}" Margin="20,0,6,5"/>
+                            <CheckBox  Checked="is_texinclusive_Checked_1" Unchecked="is_texinclusive_Unchecked" Grid.Column="1" Grid.Row="7" Margin="14,22,301,13" Name="is_texinclusive"  />
+                            <!--IsChecked="{Binding Path=RequirePinNumber, Mode=TwoWay,ValidatesOnDataErrors=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged,Source={StaticResource ResourceKey=productRequirements}}"-->
+                            <!--<TextBlock Grid.Column="0" Grid.Row="1"  Style="{StaticResource inlineText}" Name="supplierName" Text="{StaticResource  ResourceKey=supplier_name}"></TextBlock>
+                        <TextBox Style="{StaticResource ResourceKey=validation}" Validation.Error="txtEmail_Error" FontSize="15" 
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=SupplierName,Source={StaticResource ResourceKey=supplier},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  Grid.Column="1" Grid.Row="1" Name="supplier_name" />-->
+                            <ListBox Name="lbAutoCat"  SelectionChanged="lbAutoCat_SelectionChanged" Height="80" BorderBrush="#ccc" Visibility="Collapsed" VerticalContentAlignment="Top" Background="#fff"
+                                        BorderThickness="1" Grid.Column="1" Margin="0,43,0,3" Grid.Row="2" Grid.RowSpan="4" VerticalAlignment="Top" Width="350"></ListBox>
+                            <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Margin="-3,0">
+                                    <StackPanel Name="resultStack"></StackPanel>
+                                </ScrollViewer>-->
+                        </Grid>
+                    </DockPanel>
+
+                <Grid VerticalAlignment="Bottom" Margin="0,0,0,-116" Height="67">
+                    <Border BorderThickness="0 1 0 0" Width="1200" Background="#303030"  Height="3" HorizontalAlignment="Right" Margin="-10,0,0,0" VerticalAlignment="Top" ></Border>
+
+
+
+                    <!--Button Here-->
+                    <Button Command="New" Style="{StaticResource MyButtonStyle}" Name="btn_save" Click="btn_save_click" Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,12,19,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right">
+                        <StackPanel>
+                            <Image Source="{StaticResource ResourceKey=save_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"/>
+                            <TextBlock Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="{StaticResource ResourceKey=save}"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button  Style="{StaticResource MyButtonStyle}" Name="btn_back" Click="btn_back_click" Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,12,133,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="101" Height="40" HorizontalAlignment="Right" RenderTransformOrigin="-1.012,0.298">
+                        <StackPanel >
+
+                            <Image Source="{StaticResource ResourceKey=back_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"></Image>
+
+                            <TextBlock Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="{StaticResource  ResourceKey=back}"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+
+
+
+
+                    <!--<Button Style="{StaticResource MyButtonStyle}" Name="btn_Save" Click="btn_save_click" Cursor="Hand" Command="New" BorderThickness="0" BorderBrush="Transparent" Margin="0,15,105,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="101" HorizontalAlignment="Right"    >
+                        <StackPanel Width="100" Height="18"  HorizontalAlignment="Left" VerticalAlignment="Center">
+                            -->
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\save.png" Height="17"  HorizontalAlignment="left"/>-->
+                    <!--
+                            <Image Source="{StaticResource ResourceKey=save_icon}"  Height="17"  HorizontalAlignment="left" Width="20" Margin="22,0,0,0"></Image>
+                            <TextBlock FontSize="16" Margin="0,-18,13,0" Height="19" HorizontalAlignment="Right" Width="45" ><Run Text="{StaticResource ResourceKey=save}"/></TextBlock>
+                        </StackPanel>
+                    </Button>-->
+
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

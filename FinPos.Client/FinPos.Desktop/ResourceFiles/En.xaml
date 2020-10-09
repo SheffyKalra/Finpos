@@ -1,0 +1,799 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:FinPos.Client.ResourceFiles"
+                    xmlns:clr="clr-namespace:System;assembly=mscorlib"
+                    xmlns:c="clr-namespace:FinPos.Client.Model"
+                    xmlns:d="clr-namespace:FinPos.DomainContracts.DataContracts;assembly=FinPos.DomainContracts">
+    <!--For images-->
+    <BitmapImage x:Key="down_arrow" UriSource="/Images/down-arrow.png"/>
+    <BitmapImage x:Key="logo_icon" UriSource="/Images/login-logo.png" />
+    <BitmapImage x:Key="barcode_logo_icon" UriSource="/Images/logo.png" />
+    <BitmapImage x:Key="login_icon" UriSource="/Images/submit - Copy.png"></BitmapImage>
+    <BitmapImage x:Key="email_icon" UriSource="/Images/user.png"></BitmapImage>
+    <BitmapImage x:Key="password_icon" UriSource="/Images/password.png"></BitmapImage>
+    <!--<BitmapImage x:Key="password_icon" UriSource="/ImCoupon_Dataages/password.png"></BitmapImage>-->
+    <BitmapImage x:Key="close_icon" UriSource="/Images/login-close.png"></BitmapImage>
+    <BitmapImage x:Key="no_icon" UriSource="/Images/no.png"></BitmapImage>
+    <BitmapImage x:Key="yes_icon" UriSource="/Images/yes.png"></BitmapImage>
+    <BitmapImage x:Key="close" UriSource="/Images/close.png"></BitmapImage>
+    <BitmapImage x:Key="edit_icon" UriSource="/Images/edit.png" />
+    <BitmapImage x:Key="view_icon" UriSource="/Images/view.png"></BitmapImage>
+    <BitmapImage x:Key="clear_icon" UriSource="/Images/clear.png"></BitmapImage>
+    <BitmapImage x:Key="back_icon" UriSource="/Images/back.png"></BitmapImage>
+    <BitmapImage x:Key="delete_icon" UriSource="/Images/delete.png"></BitmapImage>
+    <BitmapImage x:Key="sale_icon" UriSource="/Images/sale.png" ></BitmapImage>
+    <BitmapImage x:Key="fin-logo" UriSource="/Images/fin.png " ></BitmapImage>
+    <BitmapImage x:Key="purchase_icon" UriSource="/Images/purchase.png"></BitmapImage>
+    <BitmapImage x:Key="inventory_icon" UriSource="/Images/inventroy.png"></BitmapImage>
+    <BitmapImage x:Key="setting_icon" UriSource="/Images/settings-menu.png"></BitmapImage>
+    <BitmapImage x:Key="settings_icon" UriSource="/Images/icon.png"></BitmapImage>
+    <BitmapImage x:Key="Applogo_icon" UriSource="favicon.ico"></BitmapImage>
+    <BitmapImage x:Key="wclose_icon" UriSource="/Images/window-close.png"></BitmapImage>
+    <BitmapImage x:Key="account_icon" UriSource="/Images/account.png"></BitmapImage>
+    <BitmapImage x:Key="payrol_icon" UriSource="/Images/payrol.png"></BitmapImage>
+    <BitmapImage x:Key="logout_icon" UriSource="/Images/logout.png"></BitmapImage>
+    <BitmapImage x:Key="help_icon" UriSource="/Images/help.png"></BitmapImage>
+    <BitmapImage x:Key="add_icon" UriSource="/Images/add.png"></BitmapImage>
+    <BitmapImage x:Key="return_icon" UriSource="/Images/return.png"></BitmapImage>
+    <BitmapImage x:Key="approval_icon" UriSource="/Images/approve.png"></BitmapImage>
+    <BitmapImage x:Key="print_icon" UriSource="/Images/print.png"></BitmapImage>
+    <BitmapImage x:Key="save_icon" UriSource="/Images/save.png"></BitmapImage>
+    <BitmapImage x:Key="add_company_icon" UriSource="/Images/add-company.png"></BitmapImage>
+    <BitmapImage x:Key="licenseKey_icon" UriSource="/Images/key-icon.png"></BitmapImage>
+    <BitmapImage x:Key="licenseKeySubmit_icon" UriSource="/Images/submit.png"></BitmapImage>
+    <BitmapImage x:Key="barcode_icon" UriSource="/Images/barcode.jpg"></BitmapImage>
+    <BitmapImage x:Key="minimize_icon" UriSource="/Images/mini.png"></BitmapImage>
+    <BitmapImage x:Key="barcode_image" UriSource="/Images/barcode.jpg"></BitmapImage>
+    <BitmapImage x:Key="clear_search" UriSource="/Images/No_tick.png"></BitmapImage>
+
+    <!--End-->
+    <!--Services-->
+    <clr:String x:Key="CouponManagmentService">net.tcp://localhost:8090/CouponManagment/</clr:String>
+    <clr:String x:Key="CategoryService">net.tcp://localhost:8090/CategoryService/</clr:String>
+    <clr:String x:Key="CompanyService">net.tcp://localhost:8090/CompanyService/</clr:String>
+    <clr:String x:Key="OpeningStockService">net.tcp://localhost:8090/OpeningStockService/</clr:String>
+    <clr:String x:Key="ProductService">net.tcp://localhost:8090/ProductService/</clr:String>
+    <clr:String x:Key="PurchaseService">net.tcp://localhost:8090/PurchaseService/</clr:String>
+    <clr:String x:Key="SockAdjuctmentService">net.tcp://localhost:8090/SockAdjuctmentService/</clr:String>
+    <clr:String x:Key="SupplierService">net.tcp://localhost:8090/SupplierService/</clr:String>
+    <clr:String x:Key="SystemConfigurationService">net.tcp://localhost:8090/SystemConfigurationService/</clr:String>
+    <clr:String x:Key="TaxService">net.tcp://localhost:8090/TaxService/</clr:String>
+    <clr:String x:Key="UserService">net.tcp://localhost:8090/UserService/</clr:String>
+    <!--End-->
+    <!--Main form-->
+    <clr:String x:Key="purchase_purchaseorder_leftHeader">Purchase Order</clr:String>
+    <clr:String x:Key="Combo_Select">Select</clr:String>
+    <clr:String x:Key="purchase_purchase_leftHeader">Purchase</clr:String>
+    <clr:String x:Key="commonFieldsError_Msg">Please fill the required fileds first</clr:String>
+    <!--Login/Licenese-->
+    <clr:String x:Key="login_ErrorMsg">Invalid user name and password</clr:String>
+    <clr:String x:Key="invalid_ClientKeyMsg">Invalid client key! enter valid key</clr:String>
+    <clr:String x:Key="key_ActivatedAllreadyErrorMsg">Key Already activated</clr:String>
+    <clr:String x:Key="invalid_LicenseMsg">Invalid License key</clr:String>
+    <clr:String x:Key="expired_KeyMsg">Your Key has been expired, please contact your administrator</clr:String>
+    <clr:String x:Key="planExpired_KeyMsg">Your plan has been expired. Please contact to administrator to extend or purchase new plan</clr:String>
+    <clr:String x:Key="incorrect_SystemDateMsg">Incorrect system date</clr:String>
+    <clr:String x:Key="credential_ErrorMsg">Enter an email or Password</clr:String>
+    <!--End-->
+    <clr:String x:Key="loginEmail_lbl">Email Id or User Id</clr:String>
+    <clr:String x:Key="login_Password_lbl">Password</clr:String>
+    <clr:String x:Key="database_user_lbl">Database Username</clr:String>
+    <clr:String x:Key="database_pwd_lbl">password</clr:String>
+    <clr:String x:Key="licenseKey_lbl">Enter License Key</clr:String>
+
+    <clr:String x:Key="code">Code</clr:String>
+    <clr:String x:Key="company_header">Company</clr:String>
+    <clr:String x:Key="name">Name</clr:String>
+    <clr:String x:Key="txt_company_name">Name</clr:String>
+    <clr:String x:Key="company_name">Company Name</clr:String>
+    <clr:String x:Key="branch_name">Branch Name</clr:String>
+    <clr:String x:Key="txt_branch_name">Name</clr:String>
+    <clr:String x:Key="save">Save</clr:String>
+    <clr:String x:Key="update">Update</clr:String>
+    <clr:String x:Key="address">Address</clr:String>
+    <clr:String x:Key="phone">Phone No.</clr:String>
+    <clr:String x:Key="description">Description</clr:String>
+    <clr:String x:Key="bulkCode">Bulk Item</clr:String>
+    <clr:String x:Key="createdOn">Created Date</clr:String>
+    <clr:String x:Key="add">Add</clr:String>
+    <clr:String x:Key="retrun">Return</clr:String>
+    <clr:String x:Key="approval">Approve</clr:String>
+    <clr:String x:Key="btnPrint">Print</clr:String>
+    <clr:String x:Key="edit">Edit</clr:String>
+    <clr:String x:Key="clear">Clear</clr:String>
+    <clr:String x:Key="back">Back</clr:String>
+    <clr:String x:Key="_branchHeader">Branch</clr:String>
+    <clr:String x:Key="branchRequiredFields">Please fill the all required fields.</clr:String>
+    <clr:String x:Key="view_branch">View Branch</clr:String>
+    <clr:String x:Key="set_default_company">Default</clr:String>
+    <clr:String x:Key="set_default_branch">Default Branch</clr:String>
+    <clr:String x:Key="txt_set_default_branch">Default</clr:String>
+    <clr:String x:Key="upload_logo">Upload</clr:String>
+    <clr:String x:Key="product_img">Product Image</clr:String>
+    <clr:String x:Key="company_branches">Company Branches</clr:String>
+    <clr:String x:Key="search">Search</clr:String>
+    <clr:String x:Key="add_branch">Add Branch</clr:String>
+    <clr:String x:Key="edit_branch">Edit Branch</clr:String>
+    <clr:String x:Key="quantity">Quantity</clr:String>
+    <clr:String x:Key="date">Date</clr:String>
+    <clr:String x:Key="reason">Reason</clr:String>
+    <clr:String x:Key="add_wastage">Add Wastage</clr:String>
+    <clr:String x:Key="edi_wastage">Edit Wastage</clr:String>
+    <clr:String x:Key="wastage_popupquantityerrormsg">Quantity must be less than available stock</clr:String>
+    <clr:String x:Key="wastage_popupquantityerrormsgForZeroQuantity">Quantity can not be zero</clr:String>
+    <clr:String x:Key="wastage_popupquantityerrormsgRequiredFields">Fill all required fields</clr:String>
+    <clr:String x:Key="product_code">Product Code</clr:String>
+    <clr:String x:Key="batch_code">Batch Code</clr:String>
+    <clr:String x:Key="remove_logo">Remove</clr:String>
+    <clr:String x:Key="supplier_code">Code</clr:String>
+    <clr:String x:Key="supplier_email">Email</clr:String>
+    <clr:String x:Key="supplier_contact_name">Contact Name</clr:String>
+    <clr:String x:Key="supplier_telephone">Telephone</clr:String>
+    <clr:String x:Key="supplier_mobile">Mobile</clr:String>
+    <clr:String x:Key="supplier_websiteUrl">Website Url</clr:String>
+    <clr:String x:Key="supplier_discount">Discount (%)</clr:String>
+    <clr:String x:Key="supplier_address">Address</clr:String>
+    <clr:String x:Key="company_Title">Company</clr:String>
+    <!--product Alerts-->
+    <clr:String x:Key="product_delete_alert">Are you sure ? Do you want to delete this Product ?</clr:String>
+    <clr:String x:Key="delete_success_alert">Product has been deleted Successfully.</clr:String>
+    <clr:String x:Key="no_result_alert">No results found.</clr:String>
+    <clr:String x:Key="product_exist_exeption">You can't delete this product this product is already in use</clr:String>
+    <clr:String x:Key="barcode_exeption">Bar-code already exists</clr:String>
+    <clr:String x:Key="grid_product_name">Name</clr:String>
+    <clr:String x:Key="product_name">Product Name</clr:String>
+    <clr:String x:Key="wastageProduct_name">Product Name</clr:String>
+    <clr:String x:Key="wastageProductLst_name">Product Name</clr:String>
+    <clr:String x:Key="add_product">Add Product</clr:String>
+    <clr:String x:Key="edit_product">Edit</clr:String>
+    <clr:String x:Key="product_category_Code">Category</clr:String>
+    <clr:String x:Key="retail_price">Retail Price</clr:String>
+    <clr:String x:Key="trade_price">Trade Price</clr:String>
+    <clr:String x:Key="wholeseller_price">Wholeseller Price</clr:String>
+    <clr:String x:Key="reseller_price">Reseller Price</clr:String>
+    <clr:String x:Key="item_type">Product Type</clr:String>
+    <clr:String x:Key="weight">Weight (gms)</clr:String>
+    <clr:String x:Key="barcode">Barcode</clr:String>
+    <clr:String x:Key="is_texinclusive">Tax Inclusive</clr:String>
+    <clr:String x:Key="taxPercentage">Tax Percentage</clr:String>
+    <clr:String x:Key="minimumlevel">Minimum Level</clr:String>
+    <clr:String x:Key="reorderlevel">Re-order Level</clr:String>
+    <clr:String x:Key="item_image">Product Image</clr:String>
+    <clr:String x:Key="short_name">Short Name</clr:String>
+    <clr:String x:Key="category_isActive">Active</clr:String>
+    <clr:String x:Key="category_status">Status</clr:String>
+    <clr:String x:Key="edit_new_supplier">Edit</clr:String>
+    <clr:String x:Key="supplier_tax">Tax</clr:String>
+    <clr:String x:Key="supplier_fax">Fax</clr:String>
+    <clr:String x:Key="supplier_note">Note</clr:String>
+    <clr:String x:Key="supplier_isTaxInclusive">Tax Inclusive</clr:String>
+    <clr:String x:Key="add_new_supplier">Add Supplier</clr:String>
+    <clr:String x:Key="add_new_Tax">Add Tax</clr:String>
+    <clr:String x:Key="edit_Tax">Edit Tax</clr:String>
+    <clr:String x:Key="supplier_btnAdd">Add</clr:String>
+    <clr:String x:Key="supplier_name">Name</clr:String>
+    <clr:String x:Key="sort_name">Short Name</clr:String>
+    <clr:String x:Key="addProduct_Header">Product</clr:String>
+    <clr:String x:Key="addProduct_Headerforpopup">Add Product</clr:String>
+    <c:LoginModel x:Key="data"></c:LoginModel>
+    <c:LicenseModel x:Key="licnese"></c:LicenseModel>
+    <c:CompanyModel x:Key="company"></c:CompanyModel>
+    <c:BranchModel x:Key="branch"></c:BranchModel>
+    <c:WastageModel x:Key="wastage"></c:WastageModel>
+    <d:PurchaseStockModel x:Key="purchaseStock"></d:PurchaseStockModel>
+    <c:SupplierModel x:Key="supplier"></c:SupplierModel>
+    <c:ProductModelRequirements x:Key="productRequirements"></c:ProductModelRequirements>
+    <c:LicenseModel x:Key="license"></c:LicenseModel>
+    <d:StockAdjustmentModel x:Key="stockAdjustmentModel"></d:StockAdjustmentModel>
+    <c:TaxRequiredModel x:Key="taxModel"></c:TaxRequiredModel>
+    <c:CouponManagmentModel x:Key="coupon"></c:CouponManagmentModel>
+    <c:PaymentModelRequirements x:Key="payment"></c:PaymentModelRequirements>
+
+    <clr:String x:Key="ProductPage_category_header">Category</clr:String>
+    <clr:String x:Key="SupportedfileFormates">JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif</clr:String>
+    <clr:String x:Key="product_image">Code</clr:String>
+    <clr:String x:Key="product_header">Product</clr:String>
+    <clr:String x:Key="qty_of_stock">Quantity</clr:String>
+    <clr:String x:Key="category">Category Name</clr:String>
+    <clr:String x:Key="delete">Delete</clr:String>
+    <clr:String x:Key="product_type">Product Type</clr:String>
+    <clr:String x:Key="grid_product_type">Type</clr:String>
+    <clr:String x:Key="tax">Tax(%)</clr:String>
+    <clr:String x:Key="label">Label Setting</clr:String>
+    <clr:String x:Key="master_label">Master Label</clr:String>
+    <clr:String x:Key="print_item_code">Print Product Code</clr:String>
+    <clr:String x:Key="print_item_detail">Print Product Name</clr:String>
+    <clr:String x:Key="print_unit_measure">Print Unit Measure</clr:String>
+    <clr:String x:Key="print_price">Print Price</clr:String>
+    <clr:String x:Key="print_barcode">Print Barcode</clr:String>
+    <clr:String x:Key="barcode_height">Barcode Height</clr:String>
+    <clr:String x:Key="select_printer">Select printer</clr:String>
+    <clr:String x:Key="status">Active</clr:String>
+    <clr:String x:Key="no_of_prints">Number Of Prints</clr:String>
+    <clr:String x:Key="start_row">Start Row</clr:String>
+    <clr:String x:Key="start_column">Start Column</clr:String>
+    <clr:String x:Key="Product_Picture">Product Image</clr:String>
+    <clr:String x:Key="Grid_Product_Picture">Image</clr:String>
+    <clr:String x:Key="product_saveSuccessMsg">Product saved successfully</clr:String>
+    <clr:String x:Key="product_updateSuccessMsg">Product updated successfully</clr:String>
+    <clr:String x:Key="product_alreadyInUsedMsg">You can't edit the product,this is already in use</clr:String>
+
+    <!--Category-->
+    <clr:String x:Key="category_name">Name</clr:String>
+    <clr:String x:Key="category_desc">Description</clr:String>
+    <clr:String x:Key="category_code">Category Code</clr:String>
+    <clr:String x:Key="grid_category_code">Code</clr:String>
+    <clr:String x:Key="category_header">Category</clr:String>
+    <clr:String x:Key="category_page_close">Close</clr:String>
+    <clr:String x:Key="branch_code">Branch Code</clr:String>
+    <clr:String x:Key="add_category">Add Category</clr:String>
+    <clr:String x:Key="edit_category">Edit Category</clr:String>
+    <clr:String x:Key="Branch">Branch</clr:String>
+    <clr:String x:Key="delete_CategorySuccess">Category has been deleted Successfully.</clr:String>
+    <clr:String x:Key="conformation_CategoryMsg">Are you sure ? Do you want to delete this category ?</clr:String>
+    <clr:String x:Key="error_CategoryMsg">You cannot delete this Category, this is already in use</clr:String>
+    <clr:String x:Key="update_CategoryMsg">Category status has been updated Successfully.</clr:String>
+    <clr:String x:Key="category_SavedSuccessMsg">Category saved Successfully.</clr:String>
+    <clr:String x:Key="category_UpdatedSuccessMsg">Category updated Successfully.</clr:String>
+    <clr:String x:Key="Errorcategory_AlreadyExist">Category already exists.</clr:String>
+
+    
+    <!--Opening Stock-->
+    <clr:String x:Key="os_product_name">Product Name</clr:String>
+    <clr:String x:Key="opening_stock">Opening Stock</clr:String>
+    <clr:String x:Key="current_stock">Current Stock</clr:String>
+    <clr:String x:Key="expiry_date">Expiry Date</clr:String>
+    <clr:String x:Key="add_row">Add Row</clr:String>
+    <clr:String x:Key="remove">Remove</clr:String>
+    <clr:String x:Key="select_product">Select Product</clr:String>
+    <clr:String x:Key="batch_no">Batch Number</clr:String>
+    <clr:String x:Key="retail_Price">Retail Price</clr:String>
+    <clr:String x:Key="total_Price">Total Price</clr:String>
+    <clr:String x:Key="openingstock_popupHeader">Choose Products</clr:String>
+    <clr:String x:Key="openingstock_HeaderErrorMsg">OpeningStock</clr:String>
+    <clr:String x:Key="error_message_false_product_selection_Opening_Stock">Opening Stock already exists for selected Product</clr:String>
+    <!--Stock Management-->
+    <clr:String x:Key="stock_reason">Reason</clr:String>
+    <clr:String x:Key="stock_product_name">Product Name</clr:String>
+    <clr:String x:Key="stock_available_quantity">Available Quantity</clr:String>
+    <clr:String x:Key="stock_adjustment">Stock Adjustment</clr:String>
+    <clr:String x:Key="quantity_exeed_exeption">Entered Quantity not sufficient for entered batch number</clr:String>
+    <clr:String x:Key="reason_forneagative_exeption">Reason is required for negative stock</clr:String>
+    <clr:String x:Key="error_message_false_product_selection">There is no stock to adjust for selected Product</clr:String>
+    <clr:String x:Key="stock_Index">#</clr:String>
+    <clr:String x:Key="stock_Period">Period</clr:String>
+    <clr:String x:Key="stock_Quantity">Quantity</clr:String>
+    <clr:String x:Key="stock_TotalCost">Total Cost</clr:String>
+    <clr:String x:Key="stock_addSuccessMsg">Stocks added successfully</clr:String>
+    <clr:String x:Key="stock_adjustmentSuccessMsg">Stocks saved successfully</clr:String>
+    <clr:String x:Key="stock_adjustmentRequiredFields">Please fill the all required fields.</clr:String>
+    <!--Company-->
+
+    <clr:String x:Key="add_Company_Phone_ErrorMessage">Enter minimum 10 digits phone number</clr:String>
+    <clr:String x:Key="add_Company_Image_Name">add-company.png</clr:String>
+    <clr:String x:Key="add_ImageFolderPath">@"\FinPosImageDocument"</clr:String>
+    <clr:String x:Key="company_SuccessMsg">Company updated successfully</clr:String>
+    <clr:String x:Key="company_ConformationMsg">Are you sure, do you want to set this company as default company?</clr:String>
+    <clr:String x:Key="company_setDefaultMsg">Company status must be active before make this company as default. \n Do you want to set company status from inactive to active ?</clr:String>
+    <clr:String x:Key="company_setInactiveActiveMsg">Can't Inactive this Company until you unselect as your default company</clr:String>
+    <clr:String x:Key="company_InactiveErrorMsg">Can't Inactive default company</clr:String>
+    <clr:String x:Key="company_SaveSuccessMsg">Company saved successfully</clr:String>
+    <clr:String x:Key="company_RequiredMsg">Company name is required</clr:String>
+    <clr:String x:Key="company_MobileErrorMsg">Enter minimum 10 digits phone number</clr:String>
+    <clr:String x:Key="company_imagePngType">.png</clr:String>
+    <clr:String x:Key="company_CompareImageType">JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif</clr:String>
+    <clr:String x:Key="company_ConformationMsgWithDefaultCompany">Are you sure, do you want to set this company as default company? </clr:String>
+    <clr:String x:Key="company_ConformationMsgWithStatusCompany">Company status must be active before make this company as default. \n Do you want to set company status from inactive to active ?</clr:String>
+    <clr:String x:Key="company_ErrorActiveInactiveCompany">Can't Inactive this Branch until you unselect as your default branch</clr:String>
+    <!--Branch-->
+    <clr:String x:Key="branch_UpdateMsg">Branch status updated Successfully.</clr:String>
+    <clr:String x:Key="branch_UpdateSuccess">Branch updated Successfully.</clr:String>
+    <clr:String x:Key="branch_AddedSuccess">Branch added Successfully.</clr:String>
+    <clr:String x:Key="branch_ConfirmationMsg">Are you sure? you want to mark it as deafult branch</clr:String>
+    <clr:String x:Key="branch_ConfirmationMsgForActiveInactive">Can't Inactive this Branch until you unselect as your default branch</clr:String>
+    <clr:String x:Key="branch_DefaultBranchMessage">Do you want to set this branch as default branch?</clr:String>
+    <clr:String x:Key="branch_DefaultBranchStatusActiveMessage">Branch status must be active before make this branch as default. \n Do you want to set company status from inactive to active ?</clr:String>
+    <clr:String x:Key="branch_DefaultBranchErrorMessage">Please set another branch as a default branch.</clr:String>
+    <clr:String x:Key="branch_InActiveBracnhMessage">Can't Inactive this Branch until you unselect as your default branch.</clr:String>
+
+
+    <!--product popup-->
+    <clr:String x:Key="product_exists">Product name already exists.</clr:String>
+    <clr:String x:Key="errorInvalidProductSelection">Product does not exist.</clr:String>
+    <clr:String x:Key="pop_product_id">Code</clr:String>
+    <clr:String x:Key="pop_product_Name">Name</clr:String>
+    <clr:String x:Key="pop_retail_price">Retail Price</clr:String>
+    <clr:String x:Key="pop_trade_price">Trade Price</clr:String>
+    <clr:String x:Key="pop_bar_code">Barcode</clr:String>
+    <clr:String x:Key="pop_description">Description</clr:String>
+    <clr:String x:Key="pop_currentStocks">Current Stock</clr:String>
+    <clr:String x:Key="product_ErrorMsg">Please add Tax Percentage or click the Tax Inclusive checkbox</clr:String>
+    <clr:String x:Key="product_successMsg">Product updated successfully</clr:String>
+    <clr:String x:Key="barcodeExsist_Msg">Barcode already exist</clr:String>
+    <!--Purchase-->
+    <clr:String x:Key="direct_purchase_addHeader">Add Purchase</clr:String>
+    <clr:String x:Key="purchase_addHeader">Add Purchase Order</clr:String>
+    <clr:String x:Key="purchaseOrder_lstHeader">Purchase Order</clr:String>
+    <clr:String x:Key="purchase_lstHeader">Purchase</clr:String>
+    <clr:String x:Key="purchase_Title">Purchase</clr:String>
+    <clr:String x:Key="purchase_printHeader">Approved</clr:String>
+    <clr:String x:Key="purchase_editHeader">Edit Purchase Order</clr:String>
+    <clr:String x:Key="direct_purchase_editHeader">Edit Purchase</clr:String>
+    <clr:String x:Key="purchase_pono">PO No</clr:String>
+    <clr:String x:Key="purchase_no">Order No</clr:String>
+    <clr:String x:Key="purchase_supplierName">Supplier Name</clr:String>
+    <clr:String x:Key="purchase_supplierCode">Supplier Code</clr:String>
+    <clr:String x:Key="purchase_date">Purchase Date</clr:String>
+    <clr:String x:Key="purchase_status">Status</clr:String>
+    <clr:String x:Key="purchase_address">Address</clr:String>
+    <clr:String x:Key="purchase_suplierHeader">Supplier</clr:String>
+    <clr:String x:Key="purchase_refNo">Ref.No.</clr:String>
+    <clr:String x:Key="purchase_expiryDate">Expiry Date</clr:String>
+    <clr:String x:Key="purchase_deliveryDate">Delivery Date</clr:String>
+    <clr:String x:Key="purchase_invoiceDate">Invoice Date</clr:String>
+    <clr:String x:Key="purchase_invoiceNo">Invoice No</clr:String>
+    <clr:String x:Key="purchase_purchaseHeader">Purchase</clr:String>
+    <clr:String x:Key="purchase_cashHeader">Cash</clr:String>
+    <clr:String x:Key="purchase_cashdiscount">Discount(%)</clr:String>
+    <clr:String x:Key="purchase_cashdiscountDoller">Discount($)</clr:String>
+    <clr:String x:Key="purchase_cashTaxAmount">Tax</clr:String>
+    <clr:String x:Key="purchase_cashSubChargeAmo">Surcharge Amt.</clr:String>
+    <clr:String x:Key="purchase_itemDescription">Product Name</clr:String>
+    <clr:String x:Key="purchase_quantity">Quantity</clr:String>
+    <clr:String x:Key="purchase_returnReason">Reason</clr:String>
+    <clr:String x:Key="oldPurchase_quantity">Purchased Qty</clr:String>
+    <clr:String x:Key="purchase_costPrice">Cost Price</clr:String>
+    <clr:String x:Key="purchase_sellingPrice">Selling Price</clr:String>
+    <clr:String x:Key="purchase_mrp">MRP</clr:String>
+    <clr:String x:Key="purchase_returnedqty">Returned Qty</clr:String>
+    <clr:String x:Key="purchase_returnqty">Return Qty</clr:String>
+    <clr:String x:Key="purchase_discountPer">Discount(%)</clr:String>
+    <clr:String x:Key="purchase_batchCode">Batch No</clr:String>
+    <clr:String x:Key="purchase_already">This product already added,Are you sure to add it</clr:String>
+    <clr:String x:Key="repack_already">This product already added for the repack</clr:String>
+
+    <clr:String x:Key="purchase_updated">Purchase updated successfully</clr:String>
+    <clr:String x:Key="purchase_savedmsg">Purchase saved successfully</clr:String>
+    <clr:String x:Key="purchase_returnQty_Zero">Return quantity can not be zero.</clr:String>
+    <clr:String x:Key="purchase_requiredFields">Please fill the all required fields</clr:String>
+    <clr:String x:Key="supplier_requiredFields">Select supplier</clr:String>
+    <clr:String x:Key="purchase_retunedmsg">Purchase returned successfully</clr:String>
+    <clr:String x:Key="purchaseOrder_approvedmsg">Purchase order approved successfully</clr:String>
+    <clr:String x:Key="purchase_invalidDiscount">Invalid discount value</clr:String>
+    <clr:String x:Key="purchase_confirmationmsg">Are you sure ? Do you want to delete Purchase ?</clr:String>
+    <clr:String x:Key="purchase_deletedsuccessmsg">Purchase deleted Successfully.</clr:String>
+    <clr:String x:Key="purchaseOrder_deletedsuccessmsg">Purchase order deleted Successfully.</clr:String>
+    <clr:String x:Key="purchase_popupHeader">Choose Products</clr:String>
+    <!--MasterLable-->
+    <clr:String x:Key="Device_Added">Device Added</clr:String>
+    <clr:String x:Key="masterLabel_Header">Master Label Setting</clr:String>
+    <clr:String x:Key="Device_Removed">Device Removed</clr:String>
+    <clr:String x:Key="masterLabel_Header_Popup">Master Label Setting</clr:String>
+    <!--Supplier-->
+    <clr:String x:Key="invalid_DiscountSupplier">Invalid discount value</clr:String>
+    <clr:String x:Key="printer_ErrorMsg">First Fit to Page WPF Print</clr:String>
+    <clr:String x:Key="supplier_ConformationMsg">Are you sure ? Do you want to delete Supplier ?</clr:String>
+    <clr:String x:Key="supplier_DeletedMsg">Supplier deleted successfully</clr:String>
+    <clr:String x:Key="supplier_SavedSuccessMsg">Supplier saved successfully.</clr:String>
+    <clr:String x:Key="supplier_UpdatedSuccessMsg">Supplier updated Successfully.</clr:String>
+    <clr:String x:Key="supplier_exists">Supplier name already exists.</clr:String>
+    <!--Wastage-->
+    <clr:String x:Key="date_ErrorMsg">Start date and End date required</clr:String>
+    <clr:String x:Key="date_ErrorMsgForGreater">Start date greater than the end date</clr:String>
+    <clr:String x:Key="wastage_DeleteConformationMsg">Are you sure ? Do you want to delete Wastage ?</clr:String>
+    <clr:String x:Key="wastage_DeleteSuccessMsg">Wastage deleted Successfully.</clr:String>
+    <clr:String x:Key="wastage_SavedSuccessMsg">Wastage saved Successfully.</clr:String>
+    <clr:String x:Key="wastage_UpdatedSuccessMsg">Wastage saved Successfully.</clr:String>
+    <!--Tax Model-->
+    <clr:String x:Key="tax_Code">Code</clr:String>
+    <clr:String x:Key="tax_Detail">Tax Name</clr:String>
+    <clr:String x:Key="tax_HeaderDetail">Tax Name</clr:String>
+    <clr:String x:Key="tax_HeaderRate">Rate (%)</clr:String>
+    <clr:String x:Key="tax_Rate">Rate (%)</clr:String>
+    <clr:String x:Key="error_message_Tax">Please fill the required fields first</clr:String>
+    <clr:String x:Key="confirm_message_Tax">Are you sure ? Do you want to delete Tax ?</clr:String>
+    <clr:String x:Key="success_message_Tax">Tax deleted successfully</clr:String>
+    <clr:String x:Key="taxPercentage_ErrorMsg">Please add Tax Percentage or click the Tax Inclusive</clr:String>
+    <clr:String x:Key="taxPercentage_ErrorInRetailPriceMsg">Retail price not less than Trade price</clr:String>
+    <clr:String x:Key="tax_Header">Tax Configuration</clr:String>
+    <clr:String x:Key="tax_SaveSuccessMsg">Tax saved successfully</clr:String>
+    <clr:String x:Key="tax_RateErrorMsg">Tax rate cannot be greater than 100</clr:String>
+    <clr:String x:Key="tax_DetailErrorMsg">Tax name already exist</clr:String>
+    <clr:String x:Key="tax_UpdateSuccessMsg">Tax Updated successfully</clr:String>
+    <clr:String x:Key="error_message_addProduct">Please add the sub products</clr:String>
+    <clr:String x:Key="error_message_addWeight">Weight is required</clr:String>
+    <clr:String x:Key="error_message_addWeightAndBulkCode">Weight and Bulk item is required</clr:String>
+    <clr:String x:Key="error_message_addChildItems">You Can't add duplicate quantity</clr:String>
+    <clr:String x:Key="tax_configuration_Menu">Tax Configuration</clr:String>
+    <!--Coupon Managment-->
+    <clr:String x:Key="coupon_Code_Header">Code</clr:String>
+    <clr:String x:Key="coupon_Discount_type_Header">Discount Type</clr:String>
+    <clr:String x:Key="coupon_Value_Header">Value</clr:String>
+    <clr:String x:Key="coupon_From_Date_Header">From Date</clr:String>
+    <clr:String x:Key="coupon_To_Date_Header">To Date</clr:String>
+    <clr:String x:Key="coupon_No_Coupons_Header">No of Coupons</clr:String>
+    <clr:String x:Key="Coupons_leftHeader">Coupon Management</clr:String>
+    <clr:String x:Key="Coupons_Offers_leftHeader">Coupon / Offers</clr:String>
+    <clr:String x:Key="Coupon_Name_leftHeader">Name</clr:String>
+    <clr:String x:Key="coupon_saveSuccessMsg">Coupon saved successfully.</clr:String>
+    <clr:String x:Key="coupon_valueExeededErrorMsg">Value cannot be greater then 100.</clr:String>
+    <clr:String x:Key="coupon_DateErrorMsg">To-Date cannot be less then From-Date.</clr:String>
+    <clr:String x:Key="Offer_ProductproductExists">This product already added,Are you sure to add it</clr:String>
+    <clr:String x:Key="Offer_Product_Name_leftHeader">Product Name</clr:String>
+    <clr:String x:Key="Offer_Name_leftHeader">Name</clr:String>
+    <clr:String x:Key="coupon_Discount_Type_ErrorMsg">Select Discount Type.</clr:String>
+    <clr:String x:Key="coupon_Name_ErrorMsg">Name is required</clr:String>
+    <clr:String x:Key="coupon_Value_ErrorMsg">Value is required</clr:String>
+    <clr:String x:Key="Coupon_Data">S.No</clr:String>
+    <clr:String x:Key="Coupon_Number">Coupon Number</clr:String>
+    <clr:String x:Key="Coupon_Status">Status</clr:String>
+    <clr:String x:Key="Coupon_RedeemDate">Redeem Date</clr:String>
+    <clr:String x:Key="Offers_leftHeader">Offer Management</clr:String>
+    <clr:String x:Key="coupon_MinValue_Header">Minimum Value</clr:String>
+    <clr:String x:Key="Offer_type_Header">Offer Type</clr:String>
+    <clr:String x:Key="Offer_Discount_Header">Discount</clr:String>
+    <clr:String x:Key="Offer_valueExeededErrorMsg">Discount cannot be greater then 100.</clr:String>
+    <clr:String x:Key="offer_Discount_Type_ErrorMsg">Select Offer Type.</clr:String>
+    <clr:String x:Key="offer_Discount_ErrorMsg">Discount is required</clr:String>
+    <clr:String x:Key="offer_saveSuccessMsg">Offer saved successfully.</clr:String>
+    <clr:String x:Key="HeaderTab_ItemSpecific">Item Specific</clr:String>
+    <clr:String x:Key="HeaderTab_MinPurchaseAndDateTime">Minimum Purchase/Date Time specific</clr:String>
+    <clr:String x:Key="OfferName_leftHeader">Offer Name</clr:String>
+    <clr:String x:Key="TabItemSpecificHeader_product_code">Product Code</clr:String>
+    <clr:String x:Key="rendom_Number">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</clr:String>
+    <!--Repack-->
+    <clr:String x:Key="repack_Product_Header">Product Name</clr:String>
+    <clr:String x:Key="repack_Quantity_Header">Quantity</clr:String>
+    <clr:String x:Key="repack_RetailPrice_Header">Retail Price</clr:String>
+    <clr:String x:Key="repack_Weight_Header">Conversion</clr:String>
+    <clr:String x:Key="repack_currentStock_Error">No remains any current stock</clr:String>
+    <clr:String x:Key="repack_bulkweight_Error">Quantity Exceed the Bulk weight</clr:String>
+    <clr:String x:Key="repack_NoStockRemain_Error">There is no stock for mapped Bulk item</clr:String>
+    <clr:String x:Key="repack_Quantity_Error">Please select the product and enter the quantity for repack</clr:String>
+    <clr:String x:Key="repack_Success_Msg">Repack items saved successfully</clr:String>
+    <clr:String x:Key="repack_missMatch_Error">Selected items not mapped with Bulk item please select the other product</clr:String>
+    <clr:String x:Key="issue_no_Header">Issue No</clr:String>
+    <clr:String x:Key="issue_date_Header">Issue Date</clr:String>
+    <clr:String x:Key="repack_bulkItem_Header">Bulk Item</clr:String>
+    <clr:String x:Key="repack_bulkWeight_Header">Bulk Weight</clr:String>
+    <clr:String x:Key="repack_bulkCost_Header">Cost</clr:String>
+    <clr:String x:Key="repack_bulkSale_Header">Latest sale</clr:String>
+    <clr:String x:Key="repack_bulkCurrentStock_Header">Current Stock</clr:String>
+    <clr:String x:Key="repack_bulkPacked_Header">Packed</clr:String>
+    <clr:String x:Key="repack_bulkAvailForPack_Header">Avail for Pack</clr:String>
+    <clr:String x:Key="repack_bulk_Header">Bulk Item detail</clr:String>
+    <clr:String x:Key="repack_Page_Header">Repack</clr:String>
+
+    <!--PaymentToSupplier-->
+    <clr:String x:Key="paymentToSupplier_Page_Header">Payment To Supplier</clr:String>
+    <clr:String x:Key="paymentToSupplier_Payment_Code">Code</clr:String>
+    <clr:String x:Key="paymentToSupplier_Payment_InvoiceNo">Invoice No</clr:String>
+    <clr:String x:Key="paymentToSupplier_Payment_SupplierCode">Supplier Code</clr:String>
+    <clr:String x:Key="paymentToSupplier_Payment_SupplierName">Supplier Name</clr:String>
+    <clr:String x:Key="paymentToSupplier_Payment_Amount">Amount</clr:String>
+    <clr:String x:Key="paymentToSupplier_Payment_PaymentType">Payment Type</clr:String>
+    <clr:String x:Key="paymentToSupplier_Payment_PaymentDate">Payment Date</clr:String>
+    <clr:String x:Key="paymentToSupplier_TabControl_Button">Payment</clr:String>
+    <clr:String x:Key="payment_delete_alert">Are you sure ? Do you want to delete this Payment ?</clr:String>
+    <clr:String x:Key="deletePayment_success_alert">Payment has been deleted Successfully.</clr:String>
+    <clr:String x:Key="Payment_AddEdit_InvoiceNo">Invoice No</clr:String>
+    <clr:String x:Key="Payment_select_InvoiceNo">Select Purchase</clr:String>
+    <clr:String x:Key="Payment_select_payments">Total Payments</clr:String>
+    <clr:String x:Key="Payment_select_pendingPayments">Pending Payments</clr:String>
+    <clr:String x:Key="Payment_select_paidPayments">Paid Payments</clr:String>
+    <clr:String x:Key="Payment_AddEdit_SupplierName">Supplier Name</clr:String>
+    <clr:String x:Key="Payment_AddEdit_PaymentMode">Payment Mode</clr:String>
+    <clr:String x:Key="Payment_AddEdit_Bank">Bank</clr:String>
+    <clr:String x:Key="Payment_AddEdit_PaymentDate">Payment Date</clr:String>
+    <clr:String x:Key="Payment_AddEdit_Amount">Amount</clr:String>
+    <clr:String x:Key="Payment_AddEdit_AccountNo">Account No</clr:String>
+    <clr:String x:Key="Payment_AddEdit_Details">Details</clr:String>
+    <clr:String x:Key="Payment_Savet_Success">Payment saved successfully.</clr:String>
+    <clr:String x:Key="Payment_Updated_Success">Payment updated successfully.</clr:String>
+    <clr:String x:Key="Payment_exceed_Msg">Your amount exceed the pending amount.</clr:String>
+    <clr:String x:Key="Payment_requiredFileds_Msg">Please fill the required field first.</clr:String>
+    <clr:String x:Key="Payment_paymentDateFileds_Msg">Please fill the Payment date.</clr:String>
+    <clr:String x:Key="payment_AddHeader">Add Paymnet To Supplier</clr:String>
+    <clr:String x:Key="payment_EditHeader">Edit Paymnet To Supplier</clr:String>
+    <!--Style-->
+    <Style x:Key="MyButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="validation" TargetType="{x:Type Control}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,2,40,2" />
+
+        <Setter Property="Validation.ErrorTemplate" >
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel LastChildFill="true">
+                        <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                                    ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"  >
+                            <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white"  >
+                            </TextBlock>
+                        </Border>
+                        <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" />
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--<Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="5,0,5,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>-->
+    <Style x:Key="validation1" TargetType="{x:Type ComboBox}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,2,40,2" />
+
+
+        <Setter Property="Validation.ErrorTemplate" >
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel LastChildFill="true">
+                        <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                                    ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"  >
+                            <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white"  >
+                            </TextBlock>
+                        </Border>
+                        <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" />
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DatePickerStyle1" TargetType="{x:Type DatePicker}">
+        <Setter Property="Foreground" Value="#FF333333"/>
+        <Setter Property="IsTodayHighlighted" Value="True"/>
+        <Setter Property="SelectedDateFormat" Value="Short"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint=".5,0" StartPoint=".5,1">
+                    <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                    <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                    <GradientStop Color="#FF718597" Offset="0.375"/>
+                    <GradientStop Color="#FF617584" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_DisabledVisual"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="PART_Root" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid.Resources>
+                                <SolidColorBrush x:Key="DisabledBrush" Color="#A5FFFFFF"/>
+                                <ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
+                                    <Grid>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualStateGroup.Transitions>
+                                                    <VisualTransition GeneratedDuration="0"/>
+                                                    <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                    <VisualTransition GeneratedDuration="0:0:0.1" To="Pressed"/>
+                                                </VisualStateGroup.Transitions>
+                                                <VisualState x:Name="Normal"/>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" To="#FF448DCA" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Background"/>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#7FFFFFFF"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#CCFFFFFF"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#F2FFFFFF"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Pressed">
+                                                    <Storyboard>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Background">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#FF448DCA"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <DoubleAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Highlight">
+                                                            <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                        </DoubleAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#EAFFFFFF"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#C6FFFFFF"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#6BFFFFFF"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                        <ColorAnimationUsingKeyFrames BeginTime="0" Duration="00:00:00.001" Storyboard.TargetProperty="(Border.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                            <SplineColorKeyFrame KeyTime="0" Value="#F4FFFFFF"/>
+                                                        </ColorAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+                                                <VisualState x:Name="Disabled"/>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid Background="#11FFFFFF" FlowDirection="LeftToRight" HorizontalAlignment="Center" Height="18" Margin="0" VerticalAlignment="Center" Width="19">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="20*"/>
+                                                <ColumnDefinition Width="20*"/>
+                                                <ColumnDefinition Width="20*"/>
+                                                <ColumnDefinition Width="20*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="23*"/>
+                                                <RowDefinition Height="19*"/>
+                                                <RowDefinition Height="19*"/>
+                                                <RowDefinition Height="19*"/>
+                                            </Grid.RowDefinitions>
+                                            <Border x:Name="Highlight" BorderBrush="#FF45D6FA" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="0,0,1,1" Margin="-1" Opacity="0" Grid.Row="0" Grid.RowSpan="4"/>
+                                            <Border x:Name="Background" BorderBrush="#FFFFFFFF" BorderThickness="1" Background="#FF1F3B53" Grid.ColumnSpan="4" CornerRadius=".5" Margin="0,-1,0,0" Opacity="1" Grid.Row="1" Grid.RowSpan="3"/>
+                                            <Border x:Name="BackgroundGradient" BorderBrush="#BF000000" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius=".5" Margin="0,-1,0,0" Opacity="1" Grid.Row="1" Grid.RowSpan="3">
+                                                <Border.Background>
+                                                    <LinearGradientBrush EndPoint=".7,1" StartPoint=".7,0">
+                                                        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                                        <GradientStop Color="#F9FFFFFF" Offset="0.375"/>
+                                                        <GradientStop Color="#E5FFFFFF" Offset="0.625"/>
+                                                        <GradientStop Color="#C6FFFFFF" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                            </Border>
+                                            <Rectangle Grid.ColumnSpan="4" Grid.RowSpan="1" StrokeThickness="1">
+                                                <Rectangle.Fill>
+                                                    <LinearGradientBrush EndPoint="0.3,-1.1" StartPoint="0.46,1.6">
+                                                        <GradientStop Color="#FF4084BD"/>
+                                                        <GradientStop Color="#FFAFCFEA" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Rectangle.Fill>
+                                                <Rectangle.Stroke>
+                                                    <LinearGradientBrush EndPoint="0.48,-1" StartPoint="0.48,1.25">
+                                                        <GradientStop Color="#FF494949"/>
+                                                        <GradientStop Color="#FF9F9F9F" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Rectangle.Stroke>
+                                            </Rectangle>
+                                            <Path Grid.ColumnSpan="4" Grid.Column="0" Data="M11.426758,8.4305077 L11.749023,8.4305077 L11.749023,16.331387 L10.674805,16.331387 L10.674805,10.299648 L9.0742188,11.298672 L9.0742188,10.294277 C9.4788408,10.090176 9.9094238,9.8090878 10.365967,9.4510155 C10.82251,9.0929432 11.176106,8.7527733 11.426758,8.4305077 z M14.65086,8.4305077 L18.566387,8.4305077 L18.566387,9.3435936 L15.671368,9.3435936 L15.671368,11.255703 C15.936341,11.058764 16.27293,10.960293 16.681133,10.960293 C17.411602,10.960293 17.969301,11.178717 18.354229,11.615566 C18.739157,12.052416 18.931622,12.673672 18.931622,13.479336 C18.931622,15.452317 18.052553,16.438808 16.294415,16.438808 C15.560365,16.438808 14.951641,16.234707 14.468243,15.826504 L14.881817,14.929531 C15.368796,15.326992 15.837872,15.525723 16.289043,15.525723 C17.298809,15.525723 17.803692,14.895514 17.803692,13.635098 C17.803692,12.460618 17.305971,11.873379 16.310528,11.873379 C15.83071,11.873379 15.399232,12.079271 15.016094,12.491055 L14.65086,12.238613 z" Fill="#FF2F2F2F" HorizontalAlignment="Center" Margin="4,3,4,3" Grid.Row="1" Grid.RowSpan="3" RenderTransformOrigin="0.5,0.5" Stretch="Fill" VerticalAlignment="Center"/>
+                                            <Ellipse Grid.ColumnSpan="4" Fill="#FFFFFFFF" HorizontalAlignment="Center" Height="3" StrokeThickness="0" VerticalAlignment="Center" Width="3"/>
+                                            <Border x:Name="DisabledVisual" BorderBrush="#B2FFFFFF" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="0,0,.5,.5" Opacity="0" Grid.Row="0" Grid.RowSpan="4"/>
+                                        </Grid>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" Focusable="False" HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Top" Width="20"/>
+                            <DatePickerTextBox  x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch">
+                                <DatePickerTextBox.Style>
+                                    <Style TargetType="DatePickerTextBox">
+                                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+                                        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+                                        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                                        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DatePickerTextBox}">
+                                                    <Grid>
+                                                        <Grid.Resources>
+                                                            <SolidColorBrush x:Key="WatermarkBrush" Color="#FFAAAAAA"/>
+                                                        </Grid.Resources>
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualStateGroup.Transitions>
+                                                                    <VisualTransition GeneratedDuration="0"/>
+                                                                    <VisualTransition GeneratedDuration="0:0:0.1" To="MouseOver"/>
+                                                                </VisualStateGroup.Transitions>
+                                                                <VisualState x:Name="Normal"/>
+                                                                <VisualState x:Name="MouseOver">
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Duration="0" To="#FF99C1E2" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="ContentElement"/>
+                                                                        <ColorAnimation Duration="0" To="#FF99C1E2" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="watermark_decorator"/>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                            <VisualStateGroup x:Name="WatermarkStates">
+                                                                <VisualStateGroup.Transitions>
+                                                                    <VisualTransition GeneratedDuration="0"/>
+                                                                </VisualStateGroup.Transitions>
+                                                                <VisualState x:Name="Unwatermarked"/>
+                                                                <VisualState x:Name="Watermarked">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentElement"/>
+                                                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PART_Watermark"/>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                            <VisualStateGroup x:Name="FocusStates">
+                                                                <VisualStateGroup.Transitions>
+                                                                    <VisualTransition GeneratedDuration="0"/>
+                                                                </VisualStateGroup.Transitions>
+                                                                <VisualState x:Name="Unfocused"/>
+                                                                <VisualState x:Name="Focused">
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
+                                                                    </Storyboard>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="1" Opacity="1" Padding="{TemplateBinding Padding}">
+                                                            <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                                                <Border x:Name="ContentElement" BorderBrush="#FFFFFFFF" BorderThickness="1"/>
+                                                                <Border x:Name="watermark_decorator" BorderBrush="#FFFFFFFF" BorderThickness="1">
+                                                                    <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2">
+                                                                        <ContentControl.Template>
+                                                                            <ControlTemplate>
+                                                                                <TextBlock Text="mm/dd/yyyy"/>
+                                                                            </ControlTemplate>
+                                                                        </ContentControl.Template>
+                                                                    </ContentControl>
+                                                                </Border>
+                                                                <ScrollViewer x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                <Border x:Name="FocusVisual" BorderBrush="#FF45D6FA" CornerRadius="1" IsHitTestVisible="False" Opacity="0"/>
+                                                            </Grid>
+                                                        </Border>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DatePickerTextBox.Style>
+                            </DatePickerTextBox>
+                            <Grid x:Name="PART_DisabledVisual" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0" Fill="#A5FFFFFF" RadiusY="1" Grid.Row="0" RadiusX="1"/>
+                                <Rectangle Grid.Column="1" Fill="#A5FFFFFF" Height="18" Margin="3,0,3,0" RadiusY="1" Grid.Row="0" RadiusX="1" Width="19"/>
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="false">
+                            <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

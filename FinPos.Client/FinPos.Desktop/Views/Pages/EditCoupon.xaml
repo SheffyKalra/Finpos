@@ -1,0 +1,436 @@
+﻿<Page xmlns:UserControls="clr-namespace:FinPos.Client.Views.Pages.UserControls"  x:Class="FinPos.Client.Views.UserControls.EditCoupon"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.UserControls"
+      mc:Ignorable="d" Name="EditCouponPage" SizeChanged="Grid_SizeChanged">
+    <Page.Resources>
+        <Style x:Key="MyListViewItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Background" Value="#fff" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border
+                 x:Name="Border"
+                 BorderBrush="Transparent"
+                 BorderThickness="1"
+                 Background="{TemplateBinding Background}">
+                            <GridViewRowPresenter Columns="{TemplateBinding GridView.ColumnCollection}" Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="myText" TargetType="{x:Type TextBlock}">
+            <Setter Property="Background" Value="#fff" />
+            <Style.Triggers>
+                <DataTrigger
+            Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+            Value="True">
+                    <Setter Property="Background"
+                    Value="Black" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions > 
+            <RowDefinition  Height="*" />
+            <RowDefinition  Height="*" />
+            <RowDefinition  Height="65" />
+
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="0">
+        <UserControls:ManageOffer  x:Name="UCMangeOffer" Visibility="Collapsed"/>
+        <local:ManageCoupon Visibility="Collapsed" x:Name="UCManageCoupon" Margin="0" />
+
+        </Grid>
+        <Grid   ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Background="#fff"  Name="innerContentPan" Grid.Row="1"  Margin="15 15 30 0 "   Height="auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+
+            <ListView  Name="lstCouponsDetails"  HorizontalAlignment="Stretch" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="#fff" BorderThickness="0"    BorderBrush="Transparent"   Margin="0,0,0,0" SizeChanged="lvUsers_SizeChanged" Loaded="lvUsers_Loaded">
+                <!--SizeChanged="lvUsers_SizeChanged" Loaded="lvUsers_Loaded"-->
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader IsHitTestVisible="False"   Tag="Code"  Background="#1f579c" FontSize="14"  Foreground="#fff"    Padding="10 8" HorizontalContentAlignment="Left"  Content="{StaticResource ResourceKey=Coupon_Data}" Click="GridViewColumnHeader_Click"  ></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Id}" Padding="15 10 10 10" Margin="-9 0"   Foreground="#333"  FontSize="13" >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#f5f5f5" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False"  Background="#1f579c " Foreground="#fff" FontSize="14"  Padding="10 8" Tag="Name"  HorizontalContentAlignment="Left" Content="{StaticResource  ResourceKey=coupon_Code_Header}" ></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CouponCode}" Padding="15 10 10 10" Margin="-10 0"   Foreground="#333"   FontSize="13">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#f5f5f5" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                       
+                                           
+                                       <!--Text="{Binding Quantity}"-->
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False"  Background="#1f579c " Foreground="#fff" FontSize="14"  Padding="10 8" Tag="Name"  HorizontalContentAlignment="Left" Content="{StaticResource  ResourceKey=Coupon_Number}"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    <!--<TextBlock Background="#fff" Width="200" Height="45"  Foreground="#333"  FontSize="15" Padding="10 0 10 10">
+                                        <TextBox  Background="#fff" Width="150" Height="45"    Foreground="#333"  FontSize="15" Padding="5 -5 5 5" Text="{Binding CostPrice}" ></TextBox>
+                                                </TextBlock>-->
+                                    <TextBlock Text="{Binding CouponNo}"   Padding="15 10 10 10" Margin="-10 0"   Foreground="#333"   FontSize="13">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#f5f5f5" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False" HorizontalContentAlignment="Left"  Background="#1f579c " Foreground="#fff" FontSize="14"  Padding="10 8"  Content="{StaticResource  ResourceKey=Coupon_Status}" ></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    <!--<TextBlock Background="#fff" Width="204" Height="45"  Foreground="#333"  FontSize="15" Padding="10 0 10 10">
+                                        <TextBox  Background="#fff" Width="150" Height="45"    Foreground="#333"  FontSize="15" Padding="5 -5 5 5" Text="{Binding SellingPrice}" ></TextBox>
+                                                </TextBlock>-->
+                                    <TextBlock Text="{Binding IsRedeem}" Padding="15 10 10 10" Margin="-10 0"   Foreground="#333"   FontSize="13">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#f5f5f5" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False" HorizontalContentAlignment="Left"  Background="#1f579c " Foreground="#fff" FontSize="14"  Padding="10 8"  Content="{StaticResource  ResourceKey=Coupon_RedeemDate}"  ></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    <!--<TextBlock Background="#fff" Width="204" Height="45"  Foreground="#333"  FontSize="15" Padding="10 0 10 10">
+                                        <TextBox  Background="#fff" Width="150" Height="45"    Foreground="#333"  FontSize="15" Padding="5 -5 5 5" Text="{Binding SellingPrice}" ></TextBox>
+                                                </TextBlock>-->
+                                    <TextBlock Text="{Binding RedeemDate}" Padding="15 10 10 10" Margin="-10 0"   Foreground="#333"   FontSize="13">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#f5f5f5" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <!--<GridViewColumn Header="Default" Width="50" DisplayMemberBinding="{Binding IsDefault?\'Yes\':\'No\'}" />-->
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemContainerStyle>
+
+                    <Style TargetType="ListViewItem" >
+                        <Setter Property="Background" Value="Transparent" />
+
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                                        <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="0" Content="{TemplateBinding Content}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <!--<EventSetter  Event="PreviewMouseLeftButtonDown" Handler="lvUsers_PreviewMouseLeftButtonDown" />--> 
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+            </ListView>
+        </Grid>
+
+        <!--<ListView     Name="lstCouponsDetails" Background="#eaeaea" BorderThickness="0"  SelectionMode="Single"   BorderBrush="Transparent" Height="230"  Margin="0,0,0,0"  VerticalAlignment="Top" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  >
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader IsHitTestVisible="False"   Tag="Code"  Background="#1f579c" FontSize="14"  Foreground="#fff"    Padding="10 10" HorizontalContentAlignment="Left"  Content="{StaticResource ResourceKey=Coupon_Data}" Width="100"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Id}"  Width="100" Margin="-6 0 -10 0" Height="40"  FontSize="15" Padding="10 7 10 7">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False"  Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10" Tag="Name"  HorizontalContentAlignment="Left" Content="{StaticResource  ResourceKey=coupon_Code_Header}" Width="100"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CouponCode}"  Width="100" Height="40"  Margin="-10 0"   FontSize="15" Padding="15 7 10 7">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                       
+                                           
+                                       --><!--Text="{Binding Quantity}"--><!--
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="149">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False"  Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10" Tag="Name"  HorizontalContentAlignment="Left" Content="{StaticResource  ResourceKey=Coupon_Number}" Width="149"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    --><!--<TextBlock Background="#fff" Width="200" Height="45"  Foreground="#333"  FontSize="15" Padding="10 0 10 10">
+                                        <TextBox  Background="#fff" Width="150" Height="45"    Foreground="#333"  FontSize="15" Padding="5 -5 5 5" Text="{Binding CostPrice}" ></TextBox>
+                                                </TextBlock>--><!--
+                                    <TextBlock Text="{Binding CouponNo}" Width="149" Height="40"  Margin="-10 0"   FontSize="15" Padding="15 7 10 7">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  Width="100">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False" HorizontalContentAlignment="Left"  Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10"  Content="{StaticResource  ResourceKey=Coupon_Status}" Width="100"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    --><!--<TextBlock Background="#fff" Width="204" Height="45"  Foreground="#333"  FontSize="15" Padding="10 0 10 10">
+                                        <TextBox  Background="#fff" Width="150" Height="45"    Foreground="#333"  FontSize="15" Padding="5 -5 5 5" Text="{Binding SellingPrice}" ></TextBox>
+                                                </TextBlock>--><!--
+                                    <TextBlock Text="{Binding IsRedeem}"  Width="100" Height="40"   Margin="-10 0"   FontSize="15" Padding="15 7 10 7">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  Width="120">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader  IsHitTestVisible="False" HorizontalContentAlignment="Left"  Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10"  Content="{StaticResource  ResourceKey=Coupon_RedeemDate}" Width="120"></GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate  >
+                                <DataTemplate>
+                                    --><!--<TextBlock Background="#fff" Width="204" Height="45"  Foreground="#333"  FontSize="15" Padding="10 0 10 10">
+                                        <TextBox  Background="#fff" Width="150" Height="45"    Foreground="#333"  FontSize="15" Padding="5 -5 5 5" Text="{Binding SellingPrice}" ></TextBox>
+                                                </TextBlock>--><!--
+                                    <TextBlock Text="{Binding RedeemDate}"  Width="120" Height="40"   Margin="-10 0"   FontSize="15" Padding="15 7 10 7">
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        --><!--<GridViewColumn Header="Default" Width="50" DisplayMemberBinding="{Binding IsDefault?\'Yes\':\'No\'}" />--><!--
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" >
+                        --><!--<EventSetter  Event="PreviewMouseLeftButtonDown" Handler="lstPurchase_PreviewMouseLeftButtonDown" />--><!--
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>-->
+
+
+
+        <StackPanel VerticalAlignment="Bottom" Margin="0,0,15,0" Background="#dcdcdc" Height="66" Grid.Row="2"  >
+            <Button Style="{StaticResource MyButtonStyle}"  Name="btn_Save"  Click="btn_Save_Click" Cursor="Hand" BorderThickness="0" BorderBrush="Transparent"  Margin="0,14,15,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="90" Height="40" HorizontalAlignment="Right" >
+                <StackPanel>
+                    <Image Source="{StaticResource ResourceKey=save_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"/>
+                    <TextBlock  Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="Save"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MyButtonStyle}"  Click="btn_back_Click" Name="btn_back"  Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,-55,109,14"  Background="#0091EA" FontSize="18" Foreground="#fff" Width="90" Height="40" HorizontalAlignment="Right" >
+                <StackPanel >
+
+                    <Image Source="{StaticResource ResourceKey=back_icon}"  Height="14"  HorizontalAlignment="left"   Width="14">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.485"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock  Margin="18,-18,0,0" FontSize="14" LineHeight="auto" Height="19" ><Run Text="Back"/></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

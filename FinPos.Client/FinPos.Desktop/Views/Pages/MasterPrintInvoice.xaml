@@ -1,0 +1,112 @@
+﻿<Page x:Class="FinPos.Client.Views.UserControls.MasterPrintInvoice"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.UserControls"
+      mc:Ignorable="d" 
+    
+      Title="MasterPrintInvoice">
+
+    <!--<Grid>
+        <DockPanel Margin="0,0,0,28" HorizontalAlignment="Left"  Name="innerContentDock">
+
+            <Grid DockPanel.Dock="right" Background="#fff"  Name="innerContentPanel" Width="300" Height="91" VerticalAlignment="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Name="LeftColumn" Width="180" />
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+
+
+                -->
+    <!--Click="check_IsDefault_Checked"-->
+
+    <!--<TextBlock Grid.Row="3" Style="{StaticResource inlineText}"  Name="df" Text="{StaticResource  ResourceKey=print_unit_measure}" Margin="31,19,-2,21" Grid.ColumnSpan="2"/>-->
+
+
+    <!--<TextBox Grid.Column="1" Grid.Row="3" MaxLength="10" Margin="10,14,10,15" Padding="10 3" PreviewTextInput="print_unit_measure_PreviewTextInput" Name="print_unit_measure" Width="Auto" Height="Auto"  />-->
+    <!--
+
+                <Rectangle Grid.Column="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="14,1,-421,53"  Grid.RowSpan="3" Stroke="Black"  Width="525"/>
+
+                <Label x:Name="lb_print_Ic" Content="helo" Foreground="#000" Margin="6,44,92,-44" FontSize="15"  />
+                <Label x:Name="lb_print_price" Content="hii" Foreground="#000" Margin="220,10,-116,-15" FontSize="15" />
+                <Label x:Name="lb_print_Id" Content="hii"  Foreground="#000" Margin="219,44,-117,-38" FontSize="15" />
+                <Label x:Name="lb_print_bc" Content="hii" Foreground="#000" Margin="6,12,97,-11" FontSize="15" RenderTransformOrigin="0.487,0.033" />
+                <Image Source="{StaticResource ResourceKey=barcode_image}" Height="72" VerticalAlignment="Bottom" Margin="4,0,-116,-49"/>
+                <Label x:Name="lb_print_price_Copy" Visibility="Collapsed" Background="#1f579c" Foreground="#fff"  Grid.Column="2" Margin="310,26,-275,6" Grid.Row="1"/>
+
+
+
+
+                -->
+    <!--<TextBlock Grid.Column="0" Grid.Row="3"  Style="{StaticResource inlineText}" Text="{StaticResource  ResourceKey=description}" Grid.ColumnSpan="2" Margin="20,22,10,17"></TextBlock>
+                        <TextBlock Grid.Column="0"    Grid.Row="4"  Style="{StaticResource inlineText}" Text="{StaticResource  ResourceKey=set_default_branch}" RenderTransformOrigin="0.53,2.762" Margin="15,44,15,-5" Grid.ColumnSpan="2"></TextBlock>-->
+    <!--
+            </Grid>
+        </DockPanel>
+    </Grid>-->
+    <Grid x:Name="TVGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView x:Name="TvBox" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!--Grid.Row="5" Grid.Column="5"-->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label x:Name="lb_print_Ic" Grid.Column="0" Grid.Row="0" Foreground="#000"  Margin="0" FontSize="14"  Content="{Binding ProductCode}" Height="27" VerticalAlignment="Top" HorizontalContentAlignment="Right"  />
+
+                            <Label x:Name="lb_print_Id" Grid.Column="1" Grid.Row="0"  Foreground="#000" Height="27"   Margin="0" FontSize="14" Content="{Binding ProductName}"  />
+                            <Image Source="{Binding ImageData}" Height="auto" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0 0 0 0" Grid.Column="0" Grid.Row="1"  Grid.ColumnSpan="2" >
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleX="1.085"/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="-0.973"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Label x:Name="lb_print_price" Grid.Column="0" Grid.Row="2"  Height="27"   Foreground="#000" Margin="0 -30"  FontSize="14" Content="{Binding Price}" HorizontalContentAlignment="Right"  />
+
+                            <!--<Label x:Name="lb_print_bc"  Foreground="#000"  Grid.Column="1"  Height="27"   Grid.Row="2"  Margin="0 -30"  FontSize="14" Content="{Binding Barcode}"  />-->
+                        </Grid>
+
+
+
+                        <!--<Label x:Name="lb_print_price_Copy" Visibility="Collapsed" Background="#1f579c" Foreground="#fff"   Margin="310,0,-275,0" />-->
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+</Page>

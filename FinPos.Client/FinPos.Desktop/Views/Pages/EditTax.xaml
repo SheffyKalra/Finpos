@@ -1,0 +1,269 @@
+﻿<Page x:Class="FinPos.Client.Views.UserControls.EditTax"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.UserControls"
+      mc:Ignorable="d"  Name="EditTaxpage" Height="auto" Width="auto"
+      Title="EditTax">
+    <Page.Resources>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="inlineText" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="20,5,10,0" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="VerticalAlignment" Value="center" />
+        </Style>
+
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="10,5,20,0" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Padding" Value="10,5,10,0" />
+            <Setter Property="BorderBrush" Value="#e2e2e2" />
+            <Setter Property="BorderThickness" Value="2" />
+
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="0,0,15,0" HorizontalAlignment="Stretch"
+        DataContext="{Binding Source={StaticResource ResourceKey=taxModel}}">
+        <Grid.CommandBindings>
+            <CommandBinding Command="New" CanExecute="AddTax_CanExecute"/>
+        </Grid.CommandBindings>
+        <Grid Grid.Row="1" VerticalAlignment="Top">
+
+            <!--<Grid Grid.Row="1" Height="Auto" VerticalAlignment="Top">-->
+            <Grid.RowDefinitions >
+                <RowDefinition  Height="55" />
+                <RowDefinition  Height="*" />
+                <RowDefinition  Height="80" />
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.CommandBindings>
+                <CommandBinding CanExecute="AddTax_CanExecute" Command="New" />
+            </Grid.CommandBindings>
+
+
+            <Border
+            Margin="15,0,15,0"
+            BorderBrush="#e2e2e2"
+            BorderThickness="0,0,0,1">
+                <Grid Name="SearchPanel" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                    Height="40"
+                    Margin="0,10,0,0"
+                    VerticalAlignment="Bottom"
+                    Content="{StaticResource ResourceKey=edit_Tax}"
+                    FontSize="18"
+                    Foreground="#303030" />
+                </Grid>
+            </Border>
+
+
+
+            <Grid
+            Grid.Row="1"
+            Height="Auto" Margin="15 15 15 0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+
+                <!--<DockPanel Margin="17,0,0,0" HorizontalAlignment="Left"  >-->
+
+                <Grid
+                Name="innerContentPanel"
+                VerticalAlignment="Top"
+                Background="#fff">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="LeftColumn" Width="150" />
+                        <ColumnDefinition Name="RightColumn" Width="*" />
+
+
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Content Here  -->
+                    <TextBlock
+                    Name="taxDetail"
+                    Grid.Row="1"
+                    Grid.Column="0" 
+                    Margin="0,0,0,0"
+                        FontSize="13"
+                    Padding="15,0,0,0"
+                    Style="{StaticResource inlineText}"
+                    Text="{StaticResource ResourceKey=tax_Detail}" Height="20" />
+
+                    <TextBox
+                    Name="tax_Detail"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="auto"
+                    Height="36"
+                    MinWidth="200"
+                    Margin="0,0,30,0"
+                    Padding="10,3"
+                    VerticalContentAlignment="Center"
+                    BorderBrush="#e2e2e2"
+                    BorderThickness="1"
+                   FontSize="13"
+                    LostFocus="tax_Detail_LostFocus"
+                    MaxLength="50"
+                    Style="{StaticResource ResourceKey=validation}"
+                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=TaxDetail, Source={StaticResource ResourceKey=taxModel}, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                    Validation.Error="txt_Error" />
+                    <TextBlock
+                    Name="email"
+                    Grid.Row="2" 
+                    Margin="0"
+                        FontSize="13"
+                    Padding="15,0,0,0"
+                    Style="{StaticResource inlineText}"
+                    Text="{StaticResource ResourceKey=tax_Rate}" Height="21" />
+                    <TextBox
+                    Name="tax_Rate"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Height="35"
+                   MinWidth="200"
+                    Margin="0,0,30,0"
+                    Padding="10,3"
+                    VerticalContentAlignment="Center"
+                    BorderBrush="#e2e2e2"
+                    BorderThickness="1"
+                    FontSize="13"
+                    LostFocus="tax_Rate_LostFocus"
+                    MaxLength="10"
+                    PreviewTextInput="txt_decimal_PreviewTextInput"
+                    Style="{StaticResource ResourceKey=validation}"
+                    Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=TaxRate, Source={StaticResource ResourceKey=taxModel}, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"
+                  
+                    Validation.Error="txt_Error" />
+                </Grid>
+                <!--</DockPanel>-->
+
+                <!--<Grid VerticalAlignment="Bottom" Margin="0,0,0,0" Height="67">
+
+
+
+            -->
+                <!--  Button Here  -->
+                <!--
+
+
+            </Grid>-->
+
+            </Grid>
+        </Grid>
+        <StackPanel
+            Grid.Row="2"
+            Height="66"
+            VerticalAlignment="Bottom"
+            Background="#dcdcdc">
+            <Button
+                Name="btn_save"
+                Width="90"
+                Height="40"
+                Margin="0,14,15,0"
+                HorizontalAlignment="Right"
+                Background="#0091EA"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                Click="btn_save_click"
+                Command="New"
+                Cursor="Hand"
+                FontSize="14"
+                Foreground="#fff"
+                Style="{StaticResource MyButtonStyle}">
+                <StackPanel>
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\clear.png" Height="15"  HorizontalAlignment="Right" Margin="-2,0,59,0" Width="33"/>-->
+                    <Image
+                        Width="14"
+                        Height="14"
+                        HorizontalAlignment="left"
+                        Source="{StaticResource ResourceKey=save_icon}" />
+
+                    <TextBlock
+                        Height="19"
+                        Margin="18,-18,0,0"
+                        FontSize="14"
+                        LineHeight="auto"><Run Text="{StaticResource ResourceKey=save}" /></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button
+                Name="btn_back"
+                Width="90"
+                Height="40"
+                Margin="0,-40,109,0"
+                HorizontalAlignment="Right"
+                Background="#0091EA"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                Click="btn_back_click"
+                Cursor="Hand"
+                FontSize="18"
+                Foreground="#fff"
+                RenderTransformOrigin="-1.012,0.298"
+                Style="{StaticResource MyButtonStyle}">
+                <StackPanel>
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\clear.png" Height="15"  HorizontalAlignment="Right" Margin="-2,0,59,0" Width="33"/>-->
+                    <Image
+                        Width="14"
+                        Height="14"
+                        HorizontalAlignment="left"
+                        Source="{StaticResource ResourceKey=back_icon}" />
+
+                    <TextBlock
+                        Height="19"
+                        Margin="18,-18,0,0"
+                        FontSize="14"
+                        LineHeight="auto"><Run Text="{StaticResource ResourceKey=back}" /></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+
+</Page>

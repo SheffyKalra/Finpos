@@ -1,0 +1,420 @@
+﻿<Page x:Class="FinPos.Client.Views.Pages.PaymentToSupplier"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.Pages"
+      mc:Ignorable="d" 
+    Name="PaymentToSupplierPage"
+      Title="PaymentToSupplier">
+    <Page.Resources>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <!--<Style TargetType="ListView" x:Key="ListStyle" BasedOn="{StaticResource {x:Type ListView}}">
+            <Style.Triggers>
+                <DataTrigger 
+            Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" 
+            Value="0"
+            >
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBlock>No items to display</TextBlock>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
+
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsFocused, ElementName=TextBlock}" Value="true">
+                    <Setter Property="Background" Value="Black" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style  TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border x:Name="Chrome"  BorderThickness="1"  Background="{TemplateBinding Property=Background}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"
+                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid  DockPanel.Dock="Right" Margin="0,0,15,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="SerachColumn" Width="*"/>
+            <!--<ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="0*" />-->
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "55" />
+            <!--<RowDefinition Height = "720" />-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="83"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0 0 0 1" BorderBrush="#e2e2e2" Margin="15,0,15,0" >
+            <Grid Name="SearchPanel"  Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                    
+                </Grid.ColumnDefinitions>
+                <Label FontSize="20" Foreground="#303030" Margin="0" Height="40" VerticalAlignment="Top" Content="{StaticResource ResourceKey=paymentToSupplier_Page_Header}"></Label>
+                <DockPanel
+                           HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" >
+                    <TextBox Tag="Search" Text="Search" GotFocus="payment_search_GotFocus" LostFocus="payment_search_LostFocus"  KeyUp="payment_search_KeyUp" FontSize="13" Padding="5 3"  Foreground="#969696"
+                                 Grid.Row="1" Grid.Column="1" x:Name="payment_search" MaxLength="50" Height="35" Margin="0,0" Width="250" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" >
+                    </TextBox>
+                </DockPanel>
+                <!--<TextBlock  Grid.Column="2" Grid.Row="1"  Style="{StaticResource inlineText}" Name="product_name" Text="{StaticResource  ResourceKey=coupon_Discount_type_Header}" Margin="0,0,10,10"></TextBlock>-->
+                <ComboBox  Name="cmbSupplier" Height="34" Style="{StaticResource ResourceKey=validation}" ItemsSource="{Binding}" SelectionChanged="cmbSupplier_SelectionChanged"
+                            Grid.Column="1" Margin="10,10,0,15"
+                            />
+                <Button
+                                 Grid.Row="1" Grid.Column="0"
+                                Name="arrow"
+                                Width="11"
+                                Height="11"
+                                 Margin="-30 3  10 0"
+                                Padding="0"
+                                HorizontalAlignment="Right"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Click="arrow_Click"
+                                DockPanel.Dock="Right" Canvas.ZIndex="3">
+                    <Image Source="{StaticResource ResourceKey=clear_search}" />
+                </Button>
+            </Grid >
+        </Border>
+        <Grid Background="#eaeaea" Grid.Row="1"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Name="paymentTpSupplierGrid" Margin="15,15,15,0" VerticalAlignment="Top"   HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+              
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--ListView-->
+            <ListView Background="#fff" BorderThickness="0" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  BorderBrush="Transparent" Name="lvPayments" HorizontalAlignment="Stretch"   Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.RowSpan="3" Loaded="lvPayments_Loaded" SizeChanged="lvPayments_SizeChanged">
+                <!--<ListView.Style>
+                    <Style TargetType="ListView">
+                        <Style.Triggers>
+                            <Trigger Property="HasItems"
+                         Value="False">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListView">
+                                            <TextBlock Text="No items..."/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Style>-->
+
+                <ListView.View >
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.Header >
+
+                                <GridViewColumnHeader Tag="PaymentToSupplierId" Click="lvPaymentsColumnHeader_Click"  Background="#1f579c" FontSize="15" HorizontalContentAlignment="Left" Foreground="#fff"  Padding="10 10"  Content="{StaticResource  ResourceKey=paymentToSupplier_Payment_Code}" HorizontalAlignment="Stretch"></GridViewColumnHeader>
+
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch" Margin="-6 0 -10 0"    FontSize="15" Padding="10 10 10 10" Text="{Binding PaymentTosupplierId}" >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+
+                                <GridViewColumnHeader HorizontalContentAlignment="Left" Tag="InvoiceNo" Click="lvPaymentsColumnHeader_Click"  Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10"  Content="{StaticResource  ResourceKey=paymentToSupplier_Payment_InvoiceNo}" HorizontalAlignment="Stretch"></GridViewColumnHeader>
+
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock  HorizontalAlignment="Stretch"  Margin="-10 0"  FontSize="15" Padding="15 10 10 10" Text="{Binding InvoiceNo}" >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+
+                                <GridViewColumnHeader HorizontalContentAlignment="Left"  Tag="SupplierCode" Click="lvPaymentsColumnHeader_Click" Background="#1f579c " Foreground="#fff" FontSize="15" Padding="10 10"  Content="{StaticResource  ResourceKey=paymentToSupplier_Payment_SupplierCode}" HorizontalAlignment="Stretch" ></GridViewColumnHeader>
+
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+
+                                    <TextBlock  HorizontalAlignment="Stretch"  Margin="-10 0"  FontSize="15" Padding="15 10 10 10"  Text="{Binding SupplierCode}"  >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+
+                                <GridViewColumnHeader HorizontalContentAlignment="Left" Tag="SupplierName" Click="lvPaymentsColumnHeader_Click"  Background="#1f579c " Foreground="#fff" FontSize="15" Padding="10 10"  Content="{StaticResource  ResourceKey=paymentToSupplier_Payment_SupplierName}" HorizontalAlignment="Stretch"></GridViewColumnHeader>
+
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch"  Margin="-10 0"  FontSize="15" Padding="15 10 10 10" Text="{Binding SupplierName}" >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+
+                                <GridViewColumnHeader HorizontalContentAlignment="Left" Tag="Amount" Click="lvPaymentsColumnHeader_Click"   Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10"  Content="{StaticResource  ResourceKey=paymentToSupplier_Payment_Amount}" HorizontalAlignment="Stretch"></GridViewColumnHeader>
+
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch"  Margin="-10 0" FontSize="15" Padding="15 10 10 10" Text="{Binding Amount}" >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+
+                                <GridViewColumnHeader HorizontalContentAlignment="Left" Tag="PaymentTypeName" Click="lvPaymentsColumnHeader_Click"  Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10"  Content="{StaticResource  ResourceKey=paymentToSupplier_Payment_PaymentType}" HorizontalAlignment="Stretch"></GridViewColumnHeader>
+
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock  HorizontalAlignment="Stretch" Margin="-10 0"  Padding="15 10 10 10" FontSize="15"  Text="{Binding PaymentTypeName}" >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+
+                                <GridViewColumnHeader HorizontalContentAlignment="Left"  Tag="PaymentDate" Click="lvPaymentsColumnHeader_Click"  Background="#1f579c " Foreground="#fff" FontSize="15"  Padding="10 10"  Content="{StaticResource  ResourceKey=paymentToSupplier_Payment_PaymentDate}" HorizontalAlignment="Stretch"></GridViewColumnHeader>
+
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch"  Margin="-10 0"  Padding="15 10 10 10" FontSize="15"  Text="{Binding PaymentDate}" >
+                                        <TextBlock.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Background" Value="#FFF" />
+                                                <Setter Property="Foreground" Value="#000"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger
+                                                    Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                    Value="True">
+                                                        <Setter Property="Background" Value="#ccc" />
+                                                        <Setter Property="Foreground" Value="#000"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Resources>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem" >
+                            <Setter Property="Background" Value="Transparent" />
+
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border BorderBrush="Transparent" BorderThickness="0" Background="{TemplateBinding Background}">
+                                            <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="0" Content="{TemplateBinding Content}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <EventSetter  Event="PreviewMouseLeftButtonDown" Handler="lvPayments_PreviewMouseLeftButtonDown" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+
+
+        </Grid>
+        <StackPanel Name="ActionPanel" VerticalAlignment="Bottom" Background="#dcdcdc" Margin="0,0,0,0" Height="65" Grid.Row="2"     >
+            <!--Button-->
+            <Button Style="{StaticResource MyButtonStyle}" IsEnabled="False" Name="edit_Payment" Click="edit_Payment_Click"  Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,12,247,15" Background="#0091EA" FontSize="16" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right" >
+                <StackPanel>
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\edit.png" Height="18" Margin="0,0,152,0"/>-->
+                    <Image Source="{StaticResource ResourceKey=edit_icon}" Height="14"  HorizontalAlignment="left"   Width="14">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.943"/>
+                                <TranslateTransform X="0.003" Y="1.319"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock  Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="{StaticResource ResourceKey=edit}"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MyButtonStyle}"  Name="btn_addPayment" Click="btn_addPayment_Click"  Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,-55,361,15" Background="#0091EA" FontSize="16" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right"  >
+                <StackPanel >
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\view.png" Height="18" Margin="0,0,152,0"/>-->
+                    <Image Source="{StaticResource ResourceKey=add_icon}" Height="14"  HorizontalAlignment="left"   Width="14"/>
+                    <TextBlock  Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="{StaticResource ResourceKey=add}"/></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource MyButtonStyle}" IsEnabled="False" Name="btn_Delete" Click="btn_Delete_Click" Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,-55,133,15" Background="#0091EA" FontSize="16" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right"  >
+                <StackPanel >
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\view.png" Height="18" Margin="0,0,152,0"/>-->
+                    <Image Source="{StaticResource ResourceKey=delete_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"></Image>
+                    <TextBlock Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" >
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.156"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform><Run Text="{StaticResource ResourceKey=delete}"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource MyButtonStyle}"  Name="btn_clear" Click="btn_clear_Click"  Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,-55,19,15" Background="#eb5151" FontSize="16" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right" >
+                <StackPanel >
+                    <Image Source="{StaticResource ResourceKey=clear_icon}"  Height="14"  HorizontalAlignment="left"   Width="14" />
+                    <TextBlock  Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="{StaticResource ResourceKey=clear}"/></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

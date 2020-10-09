@@ -1,0 +1,58 @@
+﻿<Window x:Class="FinPos.Server.ServerViews.ActivatePort"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinPos.Server.ServerViews"
+         xmlns:c="clr-namespace:FinPos.Server.ServerModel"
+        mc:Ignorable="d"
+        Title="ActivatePort" Height="289" Width="580" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <!--<Grid>
+        <TextBlock Name="portActivate" Text="{StaticResource ResourceKey=activatePort_lbl}"></TextBlock>
+    </Grid>-->
+    <Grid Width="630" VerticalAlignment="Center" >
+      
+        <DockPanel LastChildFill="True" Margin="-30,0,15,0" Width="603" >
+            <Grid DockPanel.Dock="left" Width="592" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="440" />
+                    <ColumnDefinition Width="440" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="240" />
+                </Grid.RowDefinitions>
+                <Grid Background="#303030" HorizontalAlignment="Left"  Width="603" Grid.ColumnSpan="2"   >
+                    <Image Source="{StaticResource ResourceKey=logo_icon}" HorizontalAlignment="Left" Margin="15 6"  ></Image>
+                </Grid>
+                <Grid  Grid.Row="1" Background="#0091EA" Grid.ColumnSpan="2" Margin="0,0,292,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="318" />
+                        <ColumnDefinition Width="122"/>
+                        <ColumnDefinition Width="183" />
+                        <ColumnDefinition Width="257"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid  Margin="20,55,20,24" Grid.ColumnSpan="2">
+                        <TextBlock TextWrapping="WrapWithOverflow" Text="{StaticResource ResourceKey=activatePort_lbl}" Margin="-2,-25,-143,20" FontSize="18" Foreground="#fff"/>
+                        <Button Style="{StaticResource ResourceKey=MyButtonStyle}" Background="#e05656" VerticalAlignment="Bottom" BorderThickness="0"  Height="45" Click="Button_Click" Margin="434,0,-164,-138">
+                            <Image Source="{StaticResource ResourceKey=close_icon}" Width="70" Margin="0" Cursor="Hand">
+                            </Image>
+
+                        </Button>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="20,16,20,24" Grid.ColumnSpan="2" >
+                    </Grid>
+                </Grid>
+            </Grid>
+        </DockPanel>
+
+
+
+
+    </Grid>
+</Window>

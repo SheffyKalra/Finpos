@@ -1,0 +1,318 @@
+﻿<Page x:Class="FinPos.Client.Views.UserControls.ProductsHistory"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.UserControls"
+      mc:Ignorable="d"  
+      Title="ProductsHistory">
+
+
+
+    <Page.Resources>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <Style x:Key="shadowedLabelStyle">
+            <Setter Property="TextBlock.Foreground" Value="{x:Static SystemColors.ControlDarkBrush}" />
+            <Setter Property="FrameworkElement.Opacity" Value="0.8" />
+            <Setter Property="TextBlock.FontSize" Value="12" />
+            <Setter Property="TextBlock.Margin" Value="8,8,4,4" />
+        </Style>
+
+
+
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Padding="0" 
+                            BorderBrush="Transparent" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="0,0,0,0"   Language="En"   DataContext="{Binding Source={StaticResource ResourceKey=productRequirements}}">
+        <Grid.CommandBindings>
+            <CommandBinding Command="New" />
+        </Grid.CommandBindings>
+        <Grid.Resources>
+            <Style x:Key="inlineText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="20,5,10,0"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalAlignment" Value="center"/>
+            </Style>
+
+
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="10,5,20,0"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Width" Value="800"/>
+                <Setter Property="Padding" Value="10,5,10,0"/>
+                <Setter Property="BorderBrush" Value="#ababab"/>
+                <Setter Property="BorderThickness" Value="1"/>
+
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="105*"/>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid    Margin="0" Grid.RowSpan="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="BranchGrid" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "21.124" />
+                <RowDefinition Height="38.876"/>
+                <RowDefinition Height = "auto" />
+            </Grid.RowDefinitions>
+
+
+
+
+            <Label FontSize="20" Foreground="#303030" Margin="0,0,0,22" Content="{StaticResource  ResourceKey=purchase_addHeader}" Grid.RowSpan="2"   ></Label>
+
+            <Grid Grid.Row="2" Margin="0" VerticalAlignment="Top"   HorizontalAlignment="Left" Height="460" >
+
+
+
+                <DockPanel Margin="17,0,0,0" HorizontalAlignment="Left"    ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+
+                    <Grid ScrollViewer.HorizontalScrollBarVisibility="Auto"  DockPanel.Dock="right" Background="#fff" Width="1153" Margin="0,0,0,301"  >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Name="LeftColumn" Width="150" />
+                            <ColumnDefinition Name="RightColumn" Width="350"  />
+                            <ColumnDefinition  Name="LeftColumn1" Width="250" />
+                            <ColumnDefinition Name="RightColumn2" Width="350" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+                            <RowDefinition Height="48" />
+
+                        </Grid.RowDefinitions>
+
+
+                        <!--Content Here-->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource inlineText}"  Name="productName" Text="{StaticResource  ResourceKey=grid_product_name}" Margin="23,12,3,15" />
+                        <TextBox Style="{StaticResource ResourceKey=validation}" FontSize="15" Padding="10 3"
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=ItemName,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  Grid.Column="1" Grid.Row="0" Name="product_name" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2"/>
+
+                        <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource inlineText}"  Name="category" Text="{StaticResource  ResourceKey=product_category_Code}" Margin="20,0,6,5" ></TextBlock>
+                        <TextBox Style="{StaticResource ResourceKey=validation}" FontSize="15" Padding="10 3"
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=ItemName,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}"  Grid.Column="1" Grid.Row="1"  MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2"/>
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource inlineText}"  Name="retailprice" Text="{StaticResource  ResourceKey=retail_price}" Margin="20,0,6,5"></TextBlock>
+                        <TextBox Style="{StaticResource ResourceKey=validation}"  FontSize="15" Padding="10 3"
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=RetailPrice,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}"    Grid.Row="2"   Name="retail_price" MaxLength="50"  Height="35" Margin="0" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1"/>
+
+
+                        <!--<TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource inlineText}"  Name="addressLabel6" Text="{StaticResource  ResourceKey=print_item_code}" Grid.ColumnSpan="2" Margin="20,17,10,15" Height="22"></TextBlock>
+                        <TextBox  FontSize="15" Padding="10 3" Grid.Row="6" Name="bar_code_height6" MaxLength="50" Height="Auto" Margin="10,15,12,11" Width="Auto" Grid.Column="1"/>-->
+
+
+                        <!--Colummnn2-->
+
+                        <TextBlock Grid.Column="2" Grid.Row="0" Style="{StaticResource inlineText}"  Name="itemType" Text="{StaticResource  ResourceKey=grid_product_type}" Margin="100,0,0,5" ></TextBlock>
+                        <!--<TextBox  FontSize="15" Padding="10 3" Grid.Row="1" Name="sort_name" MaxLength="50" Height="Auto" Margin="10,15,12,11" Width="Auto" Grid.Column="3"/>-->
+                        <ComboBox Style="{StaticResource ResourceKey=validation1}"   FontSize="15" Padding="10 3"
+                         SelectedValue="{Binding UpdateSourceTrigger=PropertyChanged, Path=ItemType,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}" IsReadOnly="True" IsEditable="True"  Grid.Column="3" Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2"  Grid.Row="0" Name="item_Type"></ComboBox>
+
+
+                        <TextBlock Grid.Column="2" Grid.Row="2" Style="{StaticResource inlineText}"  Name="weight" Text="{StaticResource  ResourceKey=weight}" Margin="100,0,0,5" ></TextBlock>
+                        <TextBox    FontSize="15" Padding="10 3"
+                          Grid.Row="2" Name="weight_" MaxLength="50"  Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+
+                        <TextBlock Grid.Column="2" Grid.Row="1" Style="{StaticResource inlineText}"  Name="description" Text="{StaticResource  ResourceKey=description}" Margin="100,0,0,5" ></TextBlock>
+                        <TextBox AcceptsReturn="True" FontSize="15" Padding="10 3" Grid.Row="1" Name="description_" MaxLength="50"  Margin="0" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="3"/>
+
+
+                    </Grid>
+                </DockPanel>
+
+
+
+
+                <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden"   Width="1153" Margin="0 160px 0 0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition    Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="48" />
+                        <RowDefinition Height="48" />
+
+                    </Grid.RowDefinitions>
+                    <TabControl Name="Tabs1" TabStripPlacement="Top"   Margin="10,10,0,5" Width="1153">
+                        <TabItem Header="Details" IsSelected="True" Background="#1f579c" Width="285"  Foreground="#fff" Padding="10"  FontSize="18" BorderBrush="#1f579c" BorderThickness="0 0 0 0">
+
+                            <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition   Width="100" />
+                                    <ColumnDefinition  Width="300.767"  />
+                                    <ColumnDefinition Width="50.233"/>
+                                    <ColumnDefinition  Width="250" />
+                                    <ColumnDefinition Width="350" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="48" />
+                                    <RowDefinition Height="48" />
+                                    <RowDefinition Height="48" />
+
+                                </Grid.RowDefinitions>
+
+
+                                <!--Content Here-->
+                                <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource inlineText}"  Foreground="#000" Text=""  Margin="20,11,6,15" />
+                                <TextBox Style="{StaticResource ResourceKey=validation}" FontSize="15" Padding="10 3"
+                           Grid.Column="1" Grid.Row="0" MaxLength="50"  Height="36" Margin="1,6,0,6" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#000" Grid.ColumnSpan="2"  />
+
+                                <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource inlineText}"  Foreground="#000" Text=""  Margin="20,11,6,15" />
+                                <TextBox Style="{StaticResource ResourceKey=validation}" FontSize="15" Padding="10 3"
+                           Grid.Column="1" Grid.Row="1" MaxLength="50"  Height="36" Margin="1,6,0,6" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.ColumnSpan="2"/>
+
+
+                                <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource inlineText}"  Text="{StaticResource  ResourceKey=retail_price}" Margin="20,11,6,15"></TextBlock>
+                                <TextBox Style="{StaticResource ResourceKey=validation}"  FontSize="15" Padding="10 3"
+                         Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=RetailPrice,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}"    Grid.Row="2"  MaxLength="50"  Height="36" Margin="1,6,0,6" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+
+                                <!--<TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource inlineText}"  Name="addressLabel6" Text="{StaticResource  ResourceKey=print_item_code}" Grid.ColumnSpan="2" Margin="20,17,10,15" Height="22"></TextBlock>
+                        <TextBox  FontSize="15" Padding="10 3" Grid.Row="6" Name="bar_code_height6" MaxLength="50" Height="Auto" Margin="10,15,12,11" Width="Auto" Grid.Column="1"/>-->
+
+
+                                <!--Colummnn2-->
+
+                                <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource inlineText}"   Text="{StaticResource  ResourceKey=grid_product_type}" Margin="100,11,0,15" ></TextBlock>
+                                <!--<TextBox  FontSize="15" Padding="10 3" Grid.Row="1" Name="sort_name" MaxLength="50" Height="Auto" Margin="10,15,12,11" Width="Auto" Grid.Column="3"/>-->
+                                <ComboBox Style="{StaticResource ResourceKey=validation1}"   FontSize="15" Padding="10 3"
+                         SelectedValue="{Binding UpdateSourceTrigger=PropertyChanged, Path=ItemType,Source={StaticResource ResourceKey=productRequirements},
+                ValidatesOnDataErrors=true, NotifyOnValidationError=true}" IsReadOnly="True" IsEditable="True"  Grid.Column="4" Margin="1,6,0,6" Height="36" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2"  Grid.Row="0"></ComboBox>
+
+
+                                <TextBlock Grid.Column="3" Grid.Row="2" Style="{StaticResource inlineText}"   Text="{StaticResource  ResourceKey=weight}" Margin="100,11,0,15" ></TextBlock>
+                                <TextBox    FontSize="15" Padding="10 3"
+                          Grid.Row="2"  MaxLength="50"  Margin="1,6,0,6" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="4"/>
+
+                                <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource inlineText}"  Text="{StaticResource  ResourceKey=description}" Margin="100,11,0,15" ></TextBlock>
+                                <TextBox AcceptsReturn="True" FontSize="15" Padding="10 3" Grid.Row="1"  MaxLength="50"  Margin="1,6,0,6" Height="35" Width="350" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#e2e2e2" Grid.Column="4"/>
+
+
+                            </Grid>
+
+                        </TabItem>
+                        <TabItem Header="History" Background="#1f579c" Width="285"  Foreground="#fff" Padding="10" FontSize="18">
+                        </TabItem>
+
+                        <TabItem Header="Item Content" Background="#1f579c" Width="285" Foreground="#fff" Padding="10" FontSize="18">
+                        </TabItem>
+                        <TabItem Header="Picture" Background="#1f579c" Foreground="#fff" Padding="10" Width="285" FontSize="18">
+                            <Grid Height="150" Width="300" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label HorizontalAlignment="Right" Margin="0,12,0,0" Width="42.033">
+                                    Name:</Label>
+                                <Label Grid.Row="1" HorizontalAlignment="Right" Margin="0,14,0,0" Width="40.097">Email:</Label>
+                                <TextBox Name="Name" Grid.Column="1" Margin="0,0,0,13" />
+                                <TextBox Name="Email" Grid.Column="1" Grid.Row="1" Margin="0,14,0,0" />
+                                <Button Grid.Column="1" Grid.Row="2" Width="75" HorizontalAlignment="Left"    Margin="0,15,0,12">OK</Button>
+
+                            </Grid>
+                        </TabItem>
+
+                    </TabControl>
+
+
+
+
+                </Grid>
+
+
+
+                <Grid VerticalAlignment="Bottom" Margin="0,0,0,-116" Height="65">
+                    <Border BorderThickness="0 1 0 0" Width="1200" Background="#303030"  Height="3" HorizontalAlignment="Right" Margin="-10,0,0,0" VerticalAlignment="Top" ></Border>
+
+
+
+                    <!--Button Here-->
+                    <Button Command="New" Style="{StaticResource MyButtonStyle}" Name="btn_save"   Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,12,19,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right">
+                        <StackPanel>
+                            <Image Source="{StaticResource ResourceKey=save_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"/>
+                            <TextBlock Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="{StaticResource ResourceKey=save}"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button  Style="{StaticResource MyButtonStyle}" Name="btn_back"   Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,12,133,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right" RenderTransformOrigin="-1.012,0.298">
+                        <StackPanel>
+
+                            <Image Source="{StaticResource ResourceKey=back_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"></Image>
+
+                            <TextBlock Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19" ><Run Text="{StaticResource  ResourceKey=back}"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+
+
+
+
+                    <!--<Button Style="{StaticResource MyButtonStyle}" Name="btn_Save" Click="btn_save_click" Cursor="Hand" Command="New" BorderThickness="0" BorderBrush="Transparent" Margin="0,15,105,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="101" HorizontalAlignment="Right"    >
+                        <StackPanel Width="100" Height="18"  HorizontalAlignment="Left" VerticalAlignment="Center">
+                            -->
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\save.png" Height="17"  HorizontalAlignment="left"/>-->
+                    <!--
+                            <Image Source="{StaticResource ResourceKey=save_icon}"  Height="17"  HorizontalAlignment="left" Width="20" Margin="22,0,0,0"></Image>
+                            <TextBlock FontSize="16" Margin="0,-18,13,0" Height="19" HorizontalAlignment="Right" Width="45" ><Run Text="{StaticResource ResourceKey=save}"/></TextBlock>
+                        </StackPanel>
+                    </Button>-->
+
+                </Grid>
+
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</Page>

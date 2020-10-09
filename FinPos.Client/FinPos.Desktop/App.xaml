@@ -1,0 +1,19 @@
+﻿<Application x:Class="FinPos.Desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FinPos.Desktop"
+             StartupUri="Views/Login.xaml">
+    <Application.Resources>
+        <!--<ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ResourceFiles/En.xaml" />
+        <ResourceDictionary Source="ResourceFiles/uk.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+         Startup="Application_Startup"   StartupUri="Views/Login.xaml"-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceFiles/En.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,31 @@
+﻿<Page xmlns:UserControls="clr-namespace:FinPos.Client.Views.Pages.UserControls"  x:Class="FinPos.Client.Views.Pages.AddPaymentToSupplier"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FinPos.Client.Views.Pages"
+      mc:Ignorable="d" 
+      Name="AddPaymentTosupplierPage"
+     >
+
+    <Grid>
+        <UserControls:ManagePaymentToSupplier x:Name="ManageControl" />
+        <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,0" Height="65" Background="#dcdcdc">
+            <!--Button Here-->
+            <Button  Style="{StaticResource MyButtonStyle}" Name="btn_save"  Cursor="Hand" Click="btn_save_Click" BorderThickness="0" BorderBrush="Transparent" Margin="0,12,19,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="110" Height="40" HorizontalAlignment="Right">
+                <StackPanel>
+                    <!--<Image Source="C:\Users\Test-user\documents\visual studio 2013\Projects\ModernUINavigationApp6\ModernUINavigationApp6\images\clear.png" Height="15"  HorizontalAlignment="Right" Margin="-2,0,59,0" Width="33"/>-->
+                    <Image Source="{StaticResource ResourceKey=save_icon}"  Height="14"  HorizontalAlignment="left"   Width="14"></Image>
+
+                    <TextBlock Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19"><Run Text="{StaticResource  ResourceKey=save}"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource MyButtonStyle}" Name="btn_back" Click="btn_back_Click" Cursor="Hand" BorderThickness="0" BorderBrush="Transparent" Margin="0,-55,133,15" Background="#0091EA" FontSize="18" Foreground="#fff" Width="101" Height="40" HorizontalAlignment="Right" RenderTransformOrigin="-1.012,0.298">
+                <StackPanel >
+                    <Image Source="{StaticResource ResourceKey=back_icon}"   Height="14"  HorizontalAlignment="left"   Width="14"></Image>
+                    <TextBlock Margin="18,-18,0,0" FontSize="16" LineHeight="auto" Height="19"><Run Text="{StaticResource  ResourceKey=back}"/></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
